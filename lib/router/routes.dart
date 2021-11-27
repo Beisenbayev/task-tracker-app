@@ -5,8 +5,8 @@ import 'package:to_do_app/router/not_found_router_page.dart';
 
 class RoutesData {
   static final routes = {
-    '/groups': (context) => GroupsPage(),
-    '/groups/form': (context) => GroupFormPage(),
+    '/groups': (context) => const GroupsPage(),
+    '/groups/form': (context) => const GroupFormPage(),
   };
 
   static const initialRoute = '/groups';

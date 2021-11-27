@@ -13,7 +13,6 @@ class GroupFormModel {
     final box = await Hive.openBox<Group>('groups_box');
     final group = Group(name: title);
     await box.add(group);
-    print(box.values);
     Navigator.of(context).pop();
   }
 }
