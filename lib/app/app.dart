@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/router/routes.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -7,7 +8,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ToDo',
-      home: Container(),
+      theme: ThemeData(primaryColor: Colors.deepOrange),
+      routes: RoutesData.routes,
+      initialRoute: RoutesData.initialRoute,
+      onUnknownRoute: (settings) => RoutesData.unknownRoute(settings),
     );
   }
 }
