@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class GroupListItemWidget extends StatelessWidget {
+class TaskListItemWidget extends StatelessWidget {
   final String title;
   final int index;
   final Function handleRemove;
   final Function handleTap;
 
-  const GroupListItemWidget({
+  const TaskListItemWidget({
     Key? key,
     required this.title,
     required this.index,
