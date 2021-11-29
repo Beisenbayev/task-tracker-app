@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:to_do_app/hive/entity/group.dart';
+import 'package:to_do_app/hive/entity/task.dart';
 
 class GroupFormModel {
   String title = '';
 
   Future<void> saveGroup(BuildContext context) async {
     if (title.isEmpty) return;
+
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(GroupAdapter());
     }
+    if (!Hive.isAdapterRegistered(2)) {
+      Hive.registerAdapter(TaskAdapter());
+    }
+    
     final box = await Hive.openBox<Group>('groups_box');
-    final group = Group(name: title);
+    final tasksBox = await Hive.openBox<Task>('tasks_box');
+    final group = Group(name: title, tasks: HiveList(tasksBox));
     await box.add(group);
     Navigator.of(context).pop();
   }
