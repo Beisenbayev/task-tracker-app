@@ -5,12 +5,14 @@ class TaskListItemWidget extends StatelessWidget {
   final int index;
   final String title;
   final String subtitle;
+  final Function handleRemove;
 
   const TaskListItemWidget({
     Key? key,
     required this.index,
     required this.title,
     required this.subtitle,
+    required this.handleRemove,
   }) : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class TaskListItemWidget extends StatelessWidget {
         motion: const ScrollMotion(),
         children: [
           SlidableAction(
-            onPressed: (BuildContext context) {},
+            onPressed: (BuildContext context) => handleRemove(index),
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
             icon: Icons.delete,
