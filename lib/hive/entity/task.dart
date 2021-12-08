@@ -2,16 +2,16 @@ import 'package:hive/hive.dart';
 
 part 'task.g.dart';
 
-@HiveType(typeId: 2)
-class Task extends HiveObject {
-  @HiveField(0)
-  String text;
-
+@HiveType(typeId: 0)
+class Task {
   @HiveField(1)
-  bool state;
+  final String title;
+
+  @HiveField(2)
+  final String text;
 
   Task({
+    required this.title,
     required this.text,
-    required this.state,
   });
 }
