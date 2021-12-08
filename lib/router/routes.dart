@@ -6,7 +6,7 @@ import 'package:to_do_app/router/not_found_router_page.dart';
 class RoutesData {
   static final routes = {
     '/tasks': (context) => const TasksPage(),
-    '/tasks/form': (context) => const CreateTaskPage()
+    '/tasks/form': (context) => CreateTaskPage()
   };
 
   static const initialRoute = '/tasks';

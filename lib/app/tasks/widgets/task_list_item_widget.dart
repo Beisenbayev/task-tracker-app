@@ -25,7 +25,7 @@ class TaskListItemWidget extends StatelessWidget {
         ),
         trailing: const Icon(Icons.chevron_right_rounded),
         onTap: () {
-          print('list item tap');
+          print('$index $title');
         },
       ),
       endActionPane: ActionPane(

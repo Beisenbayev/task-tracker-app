@@ -10,13 +10,13 @@ class TasksPage extends StatefulWidget {
 }
 
 class _TasksPageState extends State<TasksPage> {
-  final model = TasksModel();
+  final _model = TasksModel();
 
   @override
   Widget build(BuildContext context) {
     return TasksModelProvider(
       child: _TasksPageContent(),
-      model: model,
+      model: _model,
     );
   }
 }
@@ -34,12 +34,14 @@ class _TasksPageContent extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Tasks')),
       body: ListView.separated(
-        itemCount: 12,
+        itemCount: tasksCount,
         itemBuilder: (BuildContext context, int index) {
+          final task = model.tasks[index];
+
           return TaskListItemWidget(
             index: index,
-            title: 'title',
-            subtitle: 'subtitle',
+            title: task.title,
+            subtitle: task.text,
           );
         },
         separatorBuilder: (BuildContext context, int index) {
