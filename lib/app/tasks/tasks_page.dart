@@ -22,6 +22,10 @@ class _TasksPageState extends State<TasksPage> {
 }
 
 class _TasksPageContent extends StatelessWidget {
+  void openCreateTaskPage(BuildContext context) {
+    Navigator.of(context).pushNamed('/tasks/form');
+  }
+
   @override
   Widget build(BuildContext context) {
     final model = TasksModelProvider.of(context)!.model;
@@ -44,9 +48,7 @@ class _TasksPageContent extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {
-          print(model);
-        },
+        onPressed: () => openCreateTaskPage(context),
       ),
     );
   }
