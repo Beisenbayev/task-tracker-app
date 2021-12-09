@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/app/tasks/widgets/task_list_item_widget.dart';
 import 'package:to_do_app/core/models/tasks_model.dart';
+import 'package:to_do_app/core/widgets/navigation_bar.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({Key? key}) : super(key: key);
@@ -50,6 +51,7 @@ class _TasksPageContent extends StatelessWidget {
         child: const Icon(Icons.add),
         onPressed: () => model.openCreateTaskPage(context),
       ),
+      bottomNavigationBar: NavigationBarWidget.content(context),
     );
   }
 }
