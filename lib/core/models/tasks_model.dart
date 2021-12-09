@@ -6,15 +6,15 @@ import 'package:to_do_app/hive/hive_boxes.dart';
 
 class TasksModel extends ChangeNotifier {
   List<Task> _tasks = [];
-  final tasksBox = HiveBoxes.getTasksBox();
+  final _tasksBox = HiveBoxes.getTasksBox();
 
   TasksModel() {
     _setup();
   }
 
   void _setup() {
-    _notifyListenChange(tasksBox);
-    tasksBox.listenable().addListener(() => _notifyListenChange(tasksBox));
+    _notifyListenChange(_tasksBox);
+    _tasksBox.listenable().addListener(() => _notifyListenChange(_tasksBox));
   }
 
   void _notifyListenChange(Box<Task> box) {
@@ -23,7 +23,7 @@ class TasksModel extends ChangeNotifier {
   }
 
   void removeTask(int index) {
-    tasksBox.deleteAt(index);
+    _tasksBox.deleteAt(index);
   }
 
   List<Task> get tasks => _tasks;
