@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/hive/hive_boxes.dart';
 
 class EditTaskModel {
+  final int index;
+  final _tasksBox = HiveBoxes.getTasksBox();
+
+  void getKey() {
+    print(_tasksBox.keyAt(index));
+  }
+
+  EditTaskModel(this.index);
+
   void saveTaskChanges(BuildContext context) {
     Navigator.of(context).pop();
   }

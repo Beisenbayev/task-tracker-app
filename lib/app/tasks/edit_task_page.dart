@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/core/models/edit_task_model.dart';
 
 class EditTaskPage extends StatelessWidget {
-  final _model = EditTaskModel();
+  late EditTaskModel _model;
+  final int index;
 
-  EditTaskPage({Key? key}) : super(key: key);
+  EditTaskPage({
+    Key? key,
+    required this.index,
+  }) : super(key: key) {
+    _model = EditTaskModel(index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class _EditTaskPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = EditTaskModelProvider.of(context)!.model;
-
+    model.getKey();
     return Scaffold(
       appBar: AppBar(title: const Text('New Task')),
       body: Padding(
