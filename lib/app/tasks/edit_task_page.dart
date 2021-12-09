@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/models/edit_task_model.dart';
 
-class EditTaskPage extends StatelessWidget {
-  late EditTaskModel _model;
-  final int index;
+class EditTaskPage extends StatefulWidget {
+  const EditTaskPage({Key? key}) : super(key: key);
 
-  EditTaskPage({
-    Key? key,
-    required this.index,
-  }) : super(key: key) {
-    _model = EditTaskModel(index);
+  @override
+  State<EditTaskPage> createState() => _EditTaskPageState();
+}
+
+class _EditTaskPageState extends State<EditTaskPage> {
+  EditTaskModel? _model;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (_model == null) {
+      final taskKey = ModalRoute.of(context)!.settings.arguments as int;
+      _model = EditTaskModel(taskKey);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return EditTaskModelProvider(
-      model: _model,
+      model: _model!,
       child: _EditTaskPageContent(),
     );
   }
@@ -25,29 +34,31 @@ class _EditTaskPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = EditTaskModelProvider.of(context)!.model;
-    model.getKey();
+
     return Scaffold(
       appBar: AppBar(title: const Text('New Task')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
+            TextFormField(
+              initialValue: model.task.title,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Task title',
               ),
-              onChanged: (value) {},
+              onChanged: (value) => model.task.title = value,
             ),
             const SizedBox(height: 16),
-            TextField(
+            TextFormField(
+              initialValue: model.task.text,
               maxLines: 8,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Task description',
                 alignLabelWithHint: true,
               ),
-              onChanged: (value) {},
+              onChanged: (value) => model.task.text = value,
             ),
           ],
         ),

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/hive/entity/task.dart';
 import 'package:to_do_app/hive/hive_boxes.dart';
 
 class EditTaskModel {
-  final int index;
+  final int _taskKey;
   final _tasksBox = HiveBoxes.getTasksBox();
+  late Task task;
 
-  void getKey() {
-    print(_tasksBox.keyAt(index));
+  EditTaskModel(this._taskKey) {
+    task = _tasksBox.get(_taskKey)!;
   }
 
-  EditTaskModel(this.index);
-
-  void saveTaskChanges(BuildContext context) {
+  void saveTaskChanges(BuildContext context) async {
+    await _tasksBox.put(_taskKey, task);
     Navigator.of(context).pop();
   }
 }
