@@ -6,6 +6,7 @@ class TaskListItemWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final Function handleRemove;
+  final Function handleEdit;
 
   const TaskListItemWidget({
     Key? key,
@@ -13,6 +14,7 @@ class TaskListItemWidget extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.handleRemove,
+    required this.handleEdit,
   }) : super(key: key);
 
   @override
@@ -27,8 +29,9 @@ class TaskListItemWidget extends StatelessWidget {
         ),
         trailing: const Icon(Icons.chevron_right_rounded),
         onTap: () {
-          print('$index $title');
+          print('tap');
         },
+        onLongPress: () => handleEdit(index),
       ),
       endActionPane: ActionPane(
         motion: const ScrollMotion(),

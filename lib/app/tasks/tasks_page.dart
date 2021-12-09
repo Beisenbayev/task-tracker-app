@@ -26,6 +26,10 @@ class _TasksPageContent extends StatelessWidget {
     Navigator.of(context).pushNamed('/tasks/form');
   }
 
+  void openEditTaskPage(BuildContext context, int index) {
+    Navigator.of(context).pushNamed('/tasks/edit-task', arguments: index);
+  }
+
   @override
   Widget build(BuildContext context) {
     final model = TasksModelProvider.of(context)!.model;
@@ -42,7 +46,8 @@ class _TasksPageContent extends StatelessWidget {
             index: index,
             title: task.title,
             subtitle: task.text,
-            handleRemove: model.removeTask
+            handleRemove: model.removeTask,
+            handleEdit: (index) => openEditTaskPage(context, index),
           );
         },
         separatorBuilder: (BuildContext context, int index) {
