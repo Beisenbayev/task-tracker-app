@@ -8,8 +8,7 @@ class RoutesData {
   static final routes = {
     '/tasks': (context) => const TasksPage(),
     '/tasks/form': (context) => CreateTaskPage(),
-    '/tasks/edit-task': (context) =>
-        EditTaskPage(index: ModalRoute.of(context)!.settings.arguments as int),
+    '/tasks/edit-task': (context) => const EditTaskPage(),
   };
 
   static const initialRoute = '/tasks';
