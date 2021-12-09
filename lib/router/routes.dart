@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/app/archives/archives_page.dart';
 import 'package:to_do_app/app/tasks/create_task_page.dart';
 import 'package:to_do_app/app/tasks/edit_task_page.dart';
 import 'package:to_do_app/app/tasks/tasks_page.dart';
@@ -9,6 +10,7 @@ class RoutesData {
     '/tasks': (context) => const TasksPage(),
     '/tasks/form': (context) => CreateTaskPage(),
     '/tasks/edit-task': (context) => const EditTaskPage(),
+    '/archives': (context) => const ArchivesPage(),
   };
 
   static const initialRoute = '/tasks';
