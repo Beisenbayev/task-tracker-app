@@ -5,10 +5,10 @@ part 'task.g.dart';
 @HiveType(typeId: 0)
 class Task {
   @HiveField(1)
-  final String title;
+  String title;
 
   @HiveField(2)
-  final String text;
+  String text;
 
   Task({
     required this.title,
