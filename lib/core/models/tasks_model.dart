@@ -22,6 +22,15 @@ class TasksModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void openCreateTaskPage(BuildContext context) {
+    Navigator.of(context).pushNamed('/tasks/form');
+  }
+
+  void openEditTaskPage(BuildContext context, int index) {
+    final taskKey = _tasksBox.keyAt(index);
+    Navigator.of(context).pushNamed('/tasks/edit-task', arguments: taskKey);
+  }
+
   void removeTask(int index) {
     _tasksBox.deleteAt(index);
   }
