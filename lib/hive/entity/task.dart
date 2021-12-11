@@ -10,8 +10,12 @@ class Task {
   @HiveField(2)
   String text;
 
+  @HiveField(3)
+  bool isDone;
+
   Task({
     required this.title,
     required this.text,
+    this.isDone = false,
   });
 }
