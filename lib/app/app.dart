@@ -11,6 +11,7 @@ class App extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.deepOrange),
       routes: RoutesData.routes,
       initialRoute: RoutesData.initialRoute,
+      onGenerateRoute: (settings) => RoutesData.onGenerateRoute(settings),
       onUnknownRoute: (settings) => RoutesData.unknownRoute(settings),
     );
   }
