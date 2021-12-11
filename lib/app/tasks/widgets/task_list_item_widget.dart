@@ -33,6 +33,19 @@ class TaskListItemWidget extends StatelessWidget {
         },
         onLongPress: () => handleEdit(index),
       ),
+      startActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        children: [
+          SlidableAction(
+            flex: 2,
+            onPressed: (BuildContext context) {},
+            backgroundColor: const Color(0xFF7BC043),
+            foregroundColor: Colors.white,
+            icon: Icons.archive,
+            label: 'Archive',
+          ),
+        ],
+      ),
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         children: [
