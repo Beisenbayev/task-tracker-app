@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_app/hive/entity/task.dart';
 import 'package:to_do_app/hive/hive_boxes.dart';
+import 'package:to_do_app/router/routes.dart';
 
 class TasksModel extends ChangeNotifier {
   final _tasksBox = HiveBoxes.getTasksBox();
@@ -23,12 +24,12 @@ class TasksModel extends ChangeNotifier {
   }
 
   void openCreateTaskPage(BuildContext context) {
-    Navigator.of(context).pushNamed('/tasks/form');
+    Navigator.of(context).pushNamed(RouteAliasData.createTask);
   }
 
   void openEditTaskPage(BuildContext context, int index) {
     final taskKey = _tasksBox.keyAt(index);
-    Navigator.of(context).pushNamed('/tasks/edit-task', arguments: taskKey);
+    Navigator.of(context).pushNamed(RouteAliasData.editTask, arguments: taskKey);
   }
 
   void removeTask(int index) {

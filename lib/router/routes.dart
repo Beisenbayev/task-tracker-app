@@ -5,15 +5,36 @@ import 'package:to_do_app/app/tasks/edit_task_page.dart';
 import 'package:to_do_app/app/tasks/tasks_page.dart';
 import 'package:to_do_app/router/not_found_router_page.dart';
 
+class RouteAliasData {
+  static const String tasks = 'tasks';
+  static const String createTask = 'tasks/create-task';
+  static const String editTask = 'tasks/edit-task';
+  static const String archives = 'archives';
+}
+
 class RoutesData {
-  static final routes = {
-    '/tasks': (context) => const TasksPage(),
-    '/tasks/form': (context) => CreateTaskPage(),
-    '/tasks/edit-task': (context) => const EditTaskPage(),
-    '/archives': (context) => const ArchivesPage(),
+  static final Map<String, Widget Function(BuildContext)> routes = {
+    RouteAliasData.tasks: (context) => const TasksPage(),
+    RouteAliasData.createTask: (context) => CreateTaskPage(),
+    RouteAliasData.archives: (context) => const ArchivesPage(),
   };
 
-  static const initialRoute = '/tasks';
+  static const String initialRoute = RouteAliasData.tasks;
+
+  static onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case RouteAliasData.editTask:
+        final taskKey = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (BuildContext context) => EditTaskPage(taskKey: taskKey),
+        );
+      default:
+        return MaterialPageRoute<void>(
+          settings: settings,
+          builder: (BuildContext context) => const NotFoundPage(),
+        );
+    }
+  }
 
   static unknownRoute(RouteSettings settings) {
     return MaterialPageRoute<void>(

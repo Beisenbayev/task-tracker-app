@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/router/routes.dart';
 
 class NavigationBarWidget {
   static BottomNavigationBar content(BuildContext context) {
@@ -23,7 +24,10 @@ class NavigationBarWidget {
 
   static int _index = 0;
 
-  static final Map<int, String> _routes = {0: '/tasks', 1: '/archives'};
+  static final Map<int, String> _routes = {
+    0: RouteAliasData.tasks,
+    1: RouteAliasData.archives,
+  };
 
   static void _changeIndex(BuildContext context, int index) {
     _index = index;
