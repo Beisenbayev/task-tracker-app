@@ -5,15 +5,22 @@ import 'package:to_do_app/app/tasks/edit_task_page.dart';
 import 'package:to_do_app/app/tasks/tasks_page.dart';
 import 'package:to_do_app/router/not_found_router_page.dart';
 
+class RouteAliasData {
+  static const String tasks = '/tasks';
+  static const String createTask = '/tasks/create-task';
+  static const String editTask = '/tasks/edit-task';
+  static const String archives = '/archives';
+}
+
 class RoutesData {
   static final routes = {
-    '/tasks': (context) => const TasksPage(),
-    '/tasks/form': (context) => CreateTaskPage(),
-    '/tasks/edit-task': (context) => const EditTaskPage(),
-    '/archives': (context) => const ArchivesPage(),
+    RouteAliasData.tasks: (context) => const TasksPage(),
+    RouteAliasData.createTask: (context) => CreateTaskPage(),
+    RouteAliasData.editTask: (context) => const EditTaskPage(),
+    RouteAliasData.archives: (context) => const ArchivesPage(),
   };
 
-  static const initialRoute = '/tasks';
+  static const initialRoute = RouteAliasData.tasks;
 
   static unknownRoute(RouteSettings settings) {
     return MaterialPageRoute<void>(
