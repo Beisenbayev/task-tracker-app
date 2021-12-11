@@ -7,6 +7,7 @@ class TaskListItemWidget extends StatelessWidget {
   final String subtitle;
   final Function handleRemove;
   final Function handleEdit;
+  final Function handleArchive;
 
   const TaskListItemWidget({
     Key? key,
@@ -15,6 +16,7 @@ class TaskListItemWidget extends StatelessWidget {
     required this.subtitle,
     required this.handleRemove,
     required this.handleEdit,
+    required this.handleArchive,
   }) : super(key: key);
 
   @override
@@ -38,7 +40,7 @@ class TaskListItemWidget extends StatelessWidget {
         children: [
           SlidableAction(
             flex: 2,
-            onPressed: (BuildContext context) {},
+            onPressed: (BuildContext context) => handleArchive(index),
             backgroundColor: const Color(0xFF7BC043),
             foregroundColor: Colors.white,
             icon: Icons.archive,
