@@ -2,29 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/core/models/edit_task_model.dart';
 
 class EditTaskPage extends StatefulWidget {
-  const EditTaskPage({Key? key}) : super(key: key);
+  final int taskKey;
+
+  const EditTaskPage({
+    Key? key,
+    required this.taskKey,
+  }) : super(key: key);
 
   @override
   State<EditTaskPage> createState() => _EditTaskPageState();
 }
 
 class _EditTaskPageState extends State<EditTaskPage> {
-  EditTaskModel? _model;
+  late final EditTaskModel _model;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    if (_model == null) {
-      final taskKey = ModalRoute.of(context)!.settings.arguments as int;
-      _model = EditTaskModel(taskKey);
-    }
+  void initState() {
+    super.initState();
+    _model = EditTaskModel(widget.taskKey);
   }
 
   @override
   Widget build(BuildContext context) {
     return EditTaskModelProvider(
-      model: _model!,
+      model: _model,
       child: _EditTaskPageContent(),
     );
   }
@@ -36,7 +37,7 @@ class _EditTaskPageContent extends StatelessWidget {
     final model = EditTaskModelProvider.of(context)!.model;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('New Task')),
+      appBar: AppBar(title: const Text('Edit Task')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
