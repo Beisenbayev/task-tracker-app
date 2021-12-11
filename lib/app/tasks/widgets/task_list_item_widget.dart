@@ -5,34 +5,43 @@ class TaskListItemWidget extends StatelessWidget {
   final int index;
   final String title;
   final String subtitle;
+  final bool isDone;
   final Function handleRemove;
   final Function handleEdit;
   final Function handleArchive;
+  final Function handleChangeState;
 
   const TaskListItemWidget({
     Key? key,
     required this.index,
     required this.title,
     required this.subtitle,
+    required this.isDone,
     required this.handleRemove,
     required this.handleEdit,
     required this.handleArchive,
+    required this.handleChangeState,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final taskIcon = isDone ? Icons.done_rounded : Icons.chevron_right_rounded;
+    final taskTextStyle =
+        isDone ? const TextStyle(decoration: TextDecoration.lineThrough) : null;
+
     return Slidable(
       child: ListTile(
-        title: Text(title),
+        title: Text(
+          title,
+          style: taskTextStyle,
+        ),
         subtitle: Text(
           subtitle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        trailing: const Icon(Icons.chevron_right_rounded),
-        onTap: () {
-          print('tap');
-        },
+        trailing: Icon(taskIcon),
+        onTap: () => handleChangeState(index),
         onLongPress: () => handleEdit(index),
       ),
       startActionPane: ActionPane(
