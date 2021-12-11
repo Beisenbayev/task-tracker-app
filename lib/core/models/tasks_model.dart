@@ -46,6 +46,16 @@ class TasksModel extends ChangeNotifier {
     }
   }
 
+  void changeTaskState(int index) {
+    final taskKey = _tasksBox.keyAt(index);
+    final task = _tasksBox.get(taskKey);
+
+    if (task != null) {
+      task.isDone = !task.isDone;
+      _tasksBox.put(taskKey, task);
+    }
+  }
+
   List<Task> get tasks => _tasks;
 }
 

@@ -39,9 +39,11 @@ class _TasksPageContent extends StatelessWidget {
             index: index,
             title: task.title,
             subtitle: task.text,
+            isDone: task.isDone,
             handleRemove: model.removeTask,
             handleEdit: (index) => model.openEditTaskPage(context, index),
             handleArchive: model.archiveTask,
+            handleChangeState: model.changeTaskState,
           );
         },
         separatorBuilder: (BuildContext context, int index) {
