@@ -9,3 +9,7 @@ Aplication ideas:
  - Task importance ()
  - Univer or school schedule
  - Ability to set alarm clock
+
+ Application colors:
+  - pansies [flower] - flower of wisdom
+  - purple [#7e006e, #960084, #800080]
