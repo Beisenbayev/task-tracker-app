@@ -1,0 +1,11 @@
+Application name:
+Clark's crow (щелкунчик кларк)
+Woodpecker crow
+Clark's nutcracker
+
+Aplication ideas:
+ - User [name, age],
+ - Task color (each task will have color)
+ - Task importance ()
+ - Univer or school schedule
+ - Ability to set alarm clock
