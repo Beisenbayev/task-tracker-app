@@ -12,7 +12,7 @@ class EditTaskModel {
   }
 
   void saveTaskChanges(BuildContext context) async {
-    await _tasksBox.put(_taskKey, task);
+    task.save();
     Navigator.of(context).pop();
   }
 }

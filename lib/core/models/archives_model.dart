@@ -30,9 +30,8 @@ class ArchivesModel extends ChangeNotifier {
 
   void unarchiveTask(int index) {
     final tasksBox = HiveBoxes.getTasksBox();
-    final taskKey = _archivesBox.keyAt(index);
-    final task = _archivesBox.get(taskKey);
-    _archivesBox.delete(taskKey);
+    final task = _archivesBox.getAt(index);
+    _archivesBox.deleteAt(index);
 
     if (task != null) {
       tasksBox.add(task);

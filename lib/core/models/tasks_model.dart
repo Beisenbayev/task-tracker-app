@@ -29,7 +29,8 @@ class TasksModel extends ChangeNotifier {
 
   void openEditTaskPage(BuildContext context, int index) {
     final taskKey = _tasksBox.keyAt(index);
-    Navigator.of(context).pushNamed(RouteAliasData.editTask, arguments: taskKey);
+    Navigator.of(context)
+        .pushNamed(RouteAliasData.editTask, arguments: taskKey);
   }
 
   void removeTask(int index) {
@@ -38,9 +39,8 @@ class TasksModel extends ChangeNotifier {
 
   void archiveTask(int index) {
     final archivesBox = HiveBoxes.getArchivesBox();
-    final taskKey = _tasksBox.keyAt(index);
-    final task = _tasksBox.get(taskKey);
-    _tasksBox.delete(taskKey);
+    final task = _tasksBox.getAt(index);
+    _tasksBox.deleteAt(index);
 
     if (task != null) {
       archivesBox.add(task);
@@ -48,13 +48,9 @@ class TasksModel extends ChangeNotifier {
   }
 
   void changeTaskState(int index) {
-    final taskKey = _tasksBox.keyAt(index);
-    final task = _tasksBox.get(taskKey);
-
-    if (task != null) {
-      task.isDone = !task.isDone;
-      _tasksBox.put(taskKey, task);
-    }
+    final task = _tasksBox.getAt(index);
+    task?.isDone = !task.isDone;
+    task?.save();
   }
 
   List<Task> get tasks => _tasks;
