@@ -2,16 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/app/tasks/modules/colors_data.dart';
 
 class ColorPickerWidget extends StatefulWidget {
-  const ColorPickerWidget({Key? key}) : super(key: key);
+  final void Function(Color color) changeSelectedColor;
+
+  const ColorPickerWidget({
+    Key? key,
+    required this.changeSelectedColor,
+  }) : super(key: key);
 
   @override
   State<ColorPickerWidget> createState() => _ColorPickerWidgetState();
 }
 
 class _ColorPickerWidgetState extends State<ColorPickerWidget> {
-  int selectedId = 1;
+  int selectedColorId = 1;
 
-  void changeSelectedItem(id) => selectedId = id;
+  void handleChangeSelectedColorId(int id, Color color) {
+    setState(() => selectedColorId = id);
+    widget.changeSelectedColor(color);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +27,11 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: ColorsCollection.colors.map((item) {
         return _ColorPaletteWidget(
-            id: item.id,
-            color: item.color,
-            selected: selectedId == item.id,
-            handleSelect: changeSelectedItem);
+          id: item.id,
+          color: item.color,
+          selected: selectedColorId == item.id,
+          handleSelect: handleChangeSelectedColorId,
+        );
       }).toList(),
     );
   }
@@ -32,7 +41,7 @@ class _ColorPaletteWidget extends StatelessWidget {
   final int id;
   final Color color;
   final bool selected;
-  final void Function(int) handleSelect;
+  final void Function(int, Color) handleSelect;
 
   const _ColorPaletteWidget({
     Key? key,
@@ -45,7 +54,7 @@ class _ColorPaletteWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BoxBorder border = selected
-        ? Border.all(width: 6.0, color: Colors.green)
+        ? Border.all(width: 4.0, color: Colors.green)
         : Border.all(width: 1.0, color: Colors.black);
 
     return GestureDetector(
@@ -58,7 +67,7 @@ class _ColorPaletteWidget extends StatelessWidget {
           color: color,
         ),
       ),
-      onTap: () => handleSelect(id),
+      onTap: () => handleSelect(id, color),
     );
   }
 }

@@ -6,7 +6,6 @@ class CreateTaskPage extends StatelessWidget {
   final _model = CreateTaskModel();
 
   CreateTaskPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return CreateTaskModelProvider(
@@ -45,7 +44,9 @@ class _CreateTaskPageContent extends StatelessWidget {
               onChanged: (value) => model.taskDescription = value,
             ),
             const SizedBox(height: 16),
-            const ColorPickerWidget(),
+            ColorPickerWidget(
+              changeSelectedColor: (Color color) => model.taskColor = color,
+            ),
           ],
         ),
       ),
