@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/app/tasks/widgets/color_picker_widget.dart';
 import 'package:to_do_app/core/models/edit_task_model.dart';
 
 class EditTaskPage extends StatefulWidget {
@@ -60,6 +61,10 @@ class _EditTaskPageContent extends StatelessWidget {
                 alignLabelWithHint: true,
               ),
               onChanged: (value) => model.task.text = value,
+            ),
+            const SizedBox(height: 16),
+            ColorPickerWidget(
+              changeSelectedColor: (Color color) => model.task.color = color,
             ),
           ],
         ),
