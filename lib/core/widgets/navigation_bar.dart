@@ -30,7 +30,9 @@ class NavigationBarWidget {
   };
 
   static void _changeIndex(BuildContext context, int index) {
-    _index = index;
-    Navigator.of(context).pushReplacementNamed(_routes[index]!);
+    if (_index != index) {
+      _index = index;
+      Navigator.of(context).pushReplacementNamed(_routes[index]!);
+    }
   }
 }
