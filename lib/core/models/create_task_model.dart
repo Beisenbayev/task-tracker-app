@@ -5,11 +5,16 @@ import 'package:to_do_app/hive/hive_boxes.dart';
 class CreateTaskModel {
   String taskTitle = '';
   String taskDescription = '';
+  int taskColorId = 0;
 
   void saveTask(BuildContext context) {
     if (taskTitle.isEmpty) return;
 
-    final task = Task(title: taskTitle, text: taskDescription);
+    final task = Task(
+      title: taskTitle,
+      text: taskDescription,
+      colorId: taskColorId,
+    );
     final tasksBox = HiveBoxes.getTasksBox();
     tasksBox.add(task);
 

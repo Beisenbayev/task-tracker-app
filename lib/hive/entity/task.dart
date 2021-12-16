@@ -13,8 +13,12 @@ class Task extends HiveObject {
   @HiveField(3)
   bool isDone = false;
 
+  @HiveField(4)
+  int colorId;
+
   Task({
     required this.title,
     required this.text,
+    required this.colorId,
   });
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/app/tasks/widgets/color_picker_widget.dart';
 import 'package:to_do_app/core/models/create_task_model.dart';
 
 class CreateTaskPage extends StatelessWidget {
   final _model = CreateTaskModel();
 
   CreateTaskPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return CreateTaskModelProvider(
@@ -42,6 +42,11 @@ class _CreateTaskPageContent extends StatelessWidget {
                 alignLabelWithHint: true,
               ),
               onChanged: (value) => model.taskDescription = value,
+            ),
+            const SizedBox(height: 16),
+            ColorPickerWidget(
+              selectedColorId: model.taskColorId,
+              changeSelectedColorId: (int id) => model.taskColorId = id,
             ),
           ],
         ),
