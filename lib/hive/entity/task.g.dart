@@ -19,7 +19,7 @@ class TaskAdapter extends TypeAdapter<Task> {
     return Task(
       title: fields[1] as String,
       text: fields[2] as String,
-      color: fields[4] as Color,
+      colorId: fields[4] as int,
     )..isDone = fields[3] as bool;
   }
 
@@ -34,7 +34,7 @@ class TaskAdapter extends TypeAdapter<Task> {
       ..writeByte(3)
       ..write(obj.isDone)
       ..writeByte(4)
-      ..write(obj.color);
+      ..write(obj.colorId);
   }
 
   @override
