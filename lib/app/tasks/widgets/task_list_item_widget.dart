@@ -6,6 +6,7 @@ class TaskListItemWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final bool isDone;
+  final Color color;
   final Function handleRemove;
   final Function handleEdit;
   final Function handleArchive;
@@ -17,6 +18,7 @@ class TaskListItemWidget extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.isDone,
+    required this.color,
     required this.handleRemove,
     required this.handleEdit,
     required this.handleArchive,
@@ -29,45 +31,54 @@ class TaskListItemWidget extends StatelessWidget {
     final taskTextStyle =
         isDone ? const TextStyle(decoration: TextDecoration.lineThrough) : null;
 
-    return Slidable(
-      child: ListTile(
-        title: Text(
-          title,
-          style: taskTextStyle,
-        ),
-        subtitle: Text(
-          subtitle,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        trailing: Icon(taskIcon),
-        onTap: () => handleChangeState(index),
-        onLongPress: () => handleEdit(index),
-      ),
-      startActionPane: ActionPane(
-        motion: const ScrollMotion(),
-        children: [
-          SlidableAction(
-            flex: 2,
-            onPressed: (BuildContext context) => handleArchive(index),
-            backgroundColor: const Color(0xFF7BC043),
-            foregroundColor: Colors.white,
-            icon: Icons.archive,
-            label: 'Archive',
+    return Card(
+      elevation: 3,
+      clipBehavior: Clip.hardEdge,
+      child: Slidable(
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border(left: BorderSide(width: 10, color: color)),
           ),
-        ],
-      ),
-      endActionPane: ActionPane(
-        motion: const ScrollMotion(),
-        children: [
-          SlidableAction(
-            onPressed: (BuildContext context) => handleRemove(index),
-            backgroundColor: const Color(0xFFFE4A49),
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
+          child: ListTile(
+            title: Text(
+              title,
+              style: taskTextStyle,
+            ),
+            subtitle: Text(
+              subtitle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            trailing: Icon(taskIcon),
+            onTap: () => handleChangeState(index),
+            onLongPress: () => handleEdit(index),
           ),
-        ],
+        ),
+        startActionPane: ActionPane(
+          motion: const ScrollMotion(),
+          children: [
+            SlidableAction(
+              flex: 2,
+              onPressed: (BuildContext context) => handleArchive(index),
+              backgroundColor: const Color(0xFF7BC043),
+              foregroundColor: Colors.white,
+              icon: Icons.archive,
+              label: 'Archive',
+            ),
+          ],
+        ),
+        endActionPane: ActionPane(
+          motion: const ScrollMotion(),
+          children: [
+            SlidableAction(
+              onPressed: (BuildContext context) => handleRemove(index),
+              backgroundColor: const Color(0xFFFE4A49),
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+            ),
+          ],
+        ),
       ),
     );
   }

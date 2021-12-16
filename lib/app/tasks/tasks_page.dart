@@ -40,6 +40,7 @@ class _TasksPageContent extends StatelessWidget {
             title: task.title,
             subtitle: task.text,
             isDone: task.isDone,
+            color: task.color,
             handleRemove: model.removeTask,
             handleEdit: (index) => model.openEditTaskPage(context, index),
             handleArchive: model.archiveTask,
@@ -47,7 +48,7 @@ class _TasksPageContent extends StatelessWidget {
           );
         },
         separatorBuilder: (BuildContext context, int index) {
-          return const Divider(height: 2);
+          return const SizedBox(height: 2);
         },
       ),
       floatingActionButton: FloatingActionButton(
