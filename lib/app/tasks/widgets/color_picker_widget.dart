@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/app/tasks/modules/colors_data.dart';
 
 class ColorPickerWidget extends StatefulWidget {
-  final void Function(Color color) changeSelectedColor;
+  final int selectedColorId;
+  final void Function(int) changeSelectedColorId;
 
   const ColorPickerWidget({
     Key? key,
-    required this.changeSelectedColor,
+    required this.selectedColorId,
+    required this.changeSelectedColorId,
   }) : super(key: key);
 
   @override
@@ -14,22 +16,30 @@ class ColorPickerWidget extends StatefulWidget {
 }
 
 class _ColorPickerWidgetState extends State<ColorPickerWidget> {
-  int selectedColorId = 1;
+  late int colorId;
 
-  void handleChangeSelectedColorId(int id, Color color) {
-    setState(() => selectedColorId = id);
-    widget.changeSelectedColor(color);
+  @override
+  void initState() {
+    super.initState();
+    colorId = widget.selectedColorId;
+  }
+
+  void handleChangeSelectedColorId(int id) {
+    setState(() {
+      colorId = id;
+      widget.changeSelectedColorId(id);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: ColorsCollection.colors.map((item) {
+      children: ColorsCollection.colors.entries.map((item) {
         return _ColorPaletteWidget(
-          id: item.id,
-          color: item.color,
-          selected: selectedColorId == item.id,
+          id: item.key,
+          color: item.value,
+          selected: colorId == item.key,
           handleSelect: handleChangeSelectedColorId,
         );
       }).toList(),
@@ -41,7 +51,7 @@ class _ColorPaletteWidget extends StatelessWidget {
   final int id;
   final Color color;
   final bool selected;
-  final void Function(int, Color) handleSelect;
+  final void Function(int) handleSelect;
 
   const _ColorPaletteWidget({
     Key? key,
@@ -67,7 +77,7 @@ class _ColorPaletteWidget extends StatelessWidget {
           color: color,
         ),
       ),
-      onTap: () => handleSelect(id, color),
+      onTap: () => handleSelect(id),
     );
   }
 }

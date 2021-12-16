@@ -64,7 +64,8 @@ class _EditTaskPageContent extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             ColorPickerWidget(
-              changeSelectedColor: (Color color) => model.task.color = color,
+              selectedColorId: model.task.colorId,
+              changeSelectedColorId: (int id) => model.task.colorId = id,
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/app/tasks/modules/colors_data.dart';
 import 'package:to_do_app/app/tasks/widgets/task_list_item_widget.dart';
 import 'package:to_do_app/core/models/tasks_model.dart';
 import 'package:to_do_app/core/widgets/navigation_bar.dart';
@@ -40,7 +41,7 @@ class _TasksPageContent extends StatelessWidget {
             title: task.title,
             subtitle: task.text,
             isDone: task.isDone,
-            color: task.color,
+            color: ColorsCollection.colors[task.colorId]!,
             handleRemove: model.removeTask,
             handleEdit: (index) => model.openEditTaskPage(context, index),
             handleArchive: model.archiveTask,
