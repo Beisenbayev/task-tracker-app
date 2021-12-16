@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 part 'task.g.dart';
@@ -13,8 +14,12 @@ class Task extends HiveObject {
   @HiveField(3)
   bool isDone = false;
 
+  @HiveField(4)
+  Color color;
+
   Task({
     required this.title,
     required this.text,
+    required this.color,
   });
 }
