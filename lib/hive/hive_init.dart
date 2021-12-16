@@ -16,3 +16,8 @@ Future<void> initHiveBoxes() async {
   await Hive.openBox<Task>('tasks_box');
   await Hive.openBox<Task>('archives_box');
 }
+
+Future<void> deleteHiveData() async {
+  await Hive.close();
+  await Hive.deleteFromDisk();
+}
