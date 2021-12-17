@@ -16,6 +16,9 @@ class Task extends HiveObject {
   @HiveField(4)
   int colorId;
 
+  @HiveField(5)
+  bool isMarked = false;
+
   Task({
     required this.title,
     required this.text,
