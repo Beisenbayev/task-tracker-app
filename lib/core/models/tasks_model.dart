@@ -53,6 +53,12 @@ class TasksModel extends ChangeNotifier {
     task?.save();
   }
 
+  void toggleTaskMark(int index) {
+    final task = _tasksBox.getAt(index);
+    task?.isMarked = !task.isMarked;
+    task?.save();
+  }
+
   List<Task> get tasks => _tasks;
 }
 

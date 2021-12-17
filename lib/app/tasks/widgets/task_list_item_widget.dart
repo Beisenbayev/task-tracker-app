@@ -6,11 +6,13 @@ class TaskListItemWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final bool isDone;
+  final bool isMarked;
   final Color color;
   final Function handleRemove;
   final Function handleEdit;
   final Function handleArchive;
   final Function handleChangeState;
+  final Function handleMark;
 
   const TaskListItemWidget({
     Key? key,
@@ -18,16 +20,19 @@ class TaskListItemWidget extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.isDone,
+    required this.isMarked,
     required this.color,
     required this.handleRemove,
     required this.handleEdit,
     required this.handleArchive,
     required this.handleChangeState,
+    required this.handleMark,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final taskIcon = isDone ? Icons.done_rounded : Icons.chevron_right_rounded;
+    final taskIcon =
+        isDone ? Icons.done_rounded : (isMarked ? Icons.bookmark : null);
     final taskTextStyle =
         isDone ? const TextStyle(decoration: TextDecoration.lineThrough) : null;
 
@@ -55,21 +60,34 @@ class TaskListItemWidget extends StatelessWidget {
           ),
         ),
         startActionPane: ActionPane(
-          motion: const ScrollMotion(),
+          motion: const DrawerMotion(),
           children: [
             SlidableAction(
-              flex: 2,
-              onPressed: (BuildContext context) => handleArchive(index),
+              onPressed: (BuildContext context) => handleMark(index),
               backgroundColor: const Color(0xFF7BC043),
               foregroundColor: Colors.white,
-              icon: Icons.archive,
-              label: 'Archive',
+              icon: isMarked ? Icons.bookmark_remove : Icons.bookmark_add,
+              label: isMarked ? 'Unmark' : 'Mark',
+            ),
+            SlidableAction(
+              onPressed: (BuildContext context) => handleEdit(index),
+              backgroundColor: const Color(0xFF0392CF),
+              foregroundColor: Colors.white,
+              icon: Icons.note_alt,
+              label: 'Edit',
             ),
           ],
         ),
         endActionPane: ActionPane(
-          motion: const ScrollMotion(),
+          motion: const DrawerMotion(),
           children: [
+            SlidableAction(
+              onPressed: (BuildContext context) => handleArchive(index),
+              backgroundColor: Colors.grey,
+              foregroundColor: Colors.white,
+              icon: Icons.archive,
+              label: 'Archive',
+            ),
             SlidableAction(
               onPressed: (BuildContext context) => handleRemove(index),
               backgroundColor: const Color(0xFFFE4A49),
