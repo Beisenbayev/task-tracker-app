@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 
 class TapBarWidget extends StatelessWidget {
@@ -16,24 +17,30 @@ class TapBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(9),
-      decoration: BoxDecoration(
-        color: const Color(0xff242424),
-        borderRadius: BorderRadius.circular(100),
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: PaddingConsts.horizontal,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: items.mapIndexed<_TapBarWidgetItem>((index, value) {
-          return _TapBarWidgetItem(
-            index: index,
-            text: value.text,
-            isSelected: index == currentIndex,
-            onTap: onTap,
-          );
-        }).toList(),
+      child: Container(
+        width: double.infinity,
+        height: 60,
+        padding: const EdgeInsets.all(9),
+        decoration: BoxDecoration(
+          color: const Color(0xff242424),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: items.mapIndexed<_TapBarWidgetItem>((index, value) {
+            return _TapBarWidgetItem(
+              index: index,
+              text: value.text,
+              isSelected: index == currentIndex,
+              onTap: onTap,
+            );
+          }).toList(),
+        ),
       ),
     );
   }
@@ -70,12 +77,11 @@ class _TapBarWidgetItem extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: textColor,
-            fontFamily: 'Helvetica',
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            height: 1.2
-          ),
+              color: textColor,
+              fontFamily: 'Helvetica',
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              height: 1.2),
         ),
       ),
       onTap: () => onTap(index),
