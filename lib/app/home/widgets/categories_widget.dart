@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/theme/button_theme.dart';
 import 'package:to_do_app/core/theme/text_theme.dart';
+import 'package:to_do_app/core/widgets/category_item_widget.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({Key? key}) : super(key: key);
@@ -24,7 +25,6 @@ class CategoriesWidget extends StatelessWidget {
                 'Categories',
                 style: TextThemeBox.title,
               ),
-              const SizedBox(height: 26),
               ElevatedButton(
                 onPressed: () {},
                 child: const Text('Add'),
@@ -33,19 +33,27 @@ class CategoriesWidget extends StatelessWidget {
             ],
           ),
         ),
-        // ListView.separated(
-        //   scrollDirection: Axis.horizontal,
-        //   itemBuilder: (BuildContext context, int index) {
-        //     return Container(
-        //       width: 50,
-        //       height: 50,
-        //     );
-        //   },
-        //   separatorBuilder: (BuildContext context, int index) {
-        //     return const SizedBox(width: 16);
-        //   },
-        //   itemCount: 4,
-        // ),
+        const SizedBox(height: 26),
+        Container(
+          height: 136,
+          padding: const EdgeInsets.only(left: PaddingConsts.horizontal),
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              return const CategoryItemWidget(
+                color: Color(0xFFFFFCE3),
+                activeColor: Color(0xFFFFF387),
+                icon: Icons.work,
+                title: 'Works',
+                taskCount: 10,
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return const SizedBox(width: 16);
+            },
+            itemCount: 9,
+          ),
+        ),
       ],
     );
   }
