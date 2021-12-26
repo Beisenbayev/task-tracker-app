@@ -9,6 +9,13 @@ class TextThemeBox {
     color: ColorsTheme.primaryDark,
   );
 
+  static const TextStyle subtitle = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.normal,
+    height: 1.2,
+    color: ColorsTheme.subtitleColor,
+  );
+
   static const TextStyle button = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.bold,
