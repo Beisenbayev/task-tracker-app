@@ -7,6 +7,7 @@ class CategoryItemWidget extends StatelessWidget {
   final IconData icon;
   final String title;
   final int taskCount;
+  final bool isSelected;
 
   const CategoryItemWidget({
     Key? key,
@@ -15,32 +16,52 @@ class CategoryItemWidget extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.taskCount,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 112,
-      height: 136,
-      padding: const EdgeInsets.fromLTRB(9, 11, 9, 18),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.white, width: 2),
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(23),
-          topRight: Radius.circular(63),
-          bottomLeft: Radius.circular(23),
-          bottomRight: Radius.circular(23),
+    final List<BoxShadow>? boxShadow = isSelected
+        ? [
+            BoxShadow(
+              color: activeColor.withOpacity(0.4),
+              blurRadius: 4,
+              offset: const Offset(1, 4),
+            )
+          ]
+        : null;
+
+    return Stack(
+      clipBehavior: Clip.hardEdge,
+      children: [
+        Container(
+          width: 112,
+          height: 136,
+          padding: const EdgeInsets.fromLTRB(9, 11, 9, 18),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.white, width: 2),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(23),
+              topRight: Radius.circular(63),
+              bottomLeft: Radius.circular(23),
+              bottomRight: Radius.circular(23),
+            ),
+            color: color,
+            boxShadow: boxShadow,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _CategoryItemIconWidget(color: activeColor, icon: icon),
+              _CategoryItemInfoWidget(title: title, taskCount: taskCount)
+            ],
+          ),
         ),
-        color: color,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _CategoryItemIconWidget(color: activeColor, icon: icon),
-          _CategoryItemInfoWidget(title: title, taskCount: taskCount)
-        ],
-      ),
+        isSelected
+            ? _CategoryItemLineWidget(activeColor: activeColor)
+            : Container()
+      ],
     );
   }
 }
@@ -67,7 +88,7 @@ class _CategoryItemIconWidget extends StatelessWidget {
       child: Center(
         child: Icon(
           icon,
-          size: 19,
+          size: 24,
           color: color,
         ),
       ),
@@ -86,12 +107,50 @@ class _CategoryItemInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(title, style: TextThemeBox.title),
-        const SizedBox(height: 5),
-        Text('+$taskCount task', style: TextThemeBox.subtitle),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextThemeBox.title,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 5),
+          Text(
+            '+$taskCount task',
+            style: TextThemeBox.subtitle,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CategoryItemLineWidget extends StatelessWidget {
+  final Color activeColor;
+
+  const _CategoryItemLineWidget({
+    required this.activeColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: 20,
+      bottom: 4,
+      child: Container(
+        width: 72,
+        height: 3,
+        decoration: BoxDecoration(
+          color: activeColor,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          ),
+        ),
+      ),
     );
   }
 }

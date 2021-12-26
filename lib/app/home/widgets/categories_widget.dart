@@ -35,17 +35,18 @@ class CategoriesWidget extends StatelessWidget {
         ),
         const SizedBox(height: 26),
         Container(
-          height: 136,
+          height: 140,
           padding: const EdgeInsets.only(left: PaddingConsts.horizontal),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              return const CategoryItemWidget(
-                color: Color(0xFFFFFCE3),
-                activeColor: Color(0xFFFFF387),
+              return CategoryItemWidget(
+                color: const Color(0xFFFFFCE3),
+                activeColor: const Color(0xFFFFF387),
                 icon: Icons.work,
                 title: 'Works',
                 taskCount: 10,
+                isSelected: (index == 1),
               );
             },
             separatorBuilder: (BuildContext context, int index) {
