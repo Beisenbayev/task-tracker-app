@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
+import 'package:to_do_app/core/theme/text_theme.dart';
 
 class TapBarWidget extends StatelessWidget {
   final List<TapBarWidgetItem> items;
@@ -76,12 +77,7 @@ class _TapBarWidgetItem extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
-              color: textColor,
-              fontFamily: 'Helvetica',
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              height: 1.2),
+          style: TextThemeBox.title(16, textColor),
         ),
       ),
       onTap: () => onTap(index),

@@ -21,9 +21,9 @@ class CategoriesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'Categories',
-                style: TextThemeBox.title,
+                style: TextThemeBox.title(18),
               ),
               ElevatedButton(
                 onPressed: () {},

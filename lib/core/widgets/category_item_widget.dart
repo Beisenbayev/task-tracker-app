@@ -114,7 +114,7 @@ class _CategoryItemInfoWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextThemeBox.title,
+            style: TextThemeBox.title(16),
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 5),
