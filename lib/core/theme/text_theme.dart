@@ -10,6 +10,14 @@ class TextThemeBox {
     color: color ?? ColorsTheme.primaryDark,
   );
 
+  static TextStyle lightTitle(double fontSize, [Color? color]) => TextStyle(
+    fontFamily: 'Helvetica',
+    fontSize: fontSize,
+    fontWeight: FontWeight.normal,
+    height: 1.2,
+    color: color ?? ColorsTheme.primaryDark,
+  );
+
   static const TextStyle subtitle = TextStyle(
     fontSize: 13,
     fontWeight: FontWeight.normal,
