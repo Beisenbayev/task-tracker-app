@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 
 class TextThemeBox {
-  static const TextStyle title = TextStyle(
-    fontSize: 16,
+  static TextStyle title(double fontSize, [Color? color]) => TextStyle(
+    fontFamily: 'Helvetica',
+    fontSize: fontSize,
     fontWeight: FontWeight.bold,
     height: 1.2,
-    color: ColorsTheme.primaryDark,
+    color: color ?? ColorsTheme.primaryDark,
   );
 
   static const TextStyle subtitle = TextStyle(
