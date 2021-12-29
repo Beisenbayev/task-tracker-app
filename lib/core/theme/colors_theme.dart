@@ -8,4 +8,9 @@ class ColorsTheme {
 
   static const primaryBackground = Color(0xffffffff);
   static const secondaryBackground = Color(0xfffafafa);
+
+  static const selectedBackground = Color.fromRGBO(149, 250, 113, 0.37);
+  static const selectedForeground = Color(0xff52d22e);
+
+  static const unselectedBackground = Color(0xffd9d9d9);
 }
