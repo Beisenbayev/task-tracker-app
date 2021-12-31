@@ -74,6 +74,7 @@ class _TaskListWidgetItems extends StatelessWidget {
           icon: task.icon,
           title: task.title,
           isSelected: task.isSelected,
+          isMarked: false,
         );
       },
       separatorBuilder: (BuildContext context, int index) {
