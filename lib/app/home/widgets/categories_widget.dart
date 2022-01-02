@@ -5,9 +5,14 @@ import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/theme/button_theme.dart';
 import 'package:to_do_app/core/theme/text_theme.dart';
 import 'package:to_do_app/core/widgets/category_item_widget.dart';
+import 'package:to_do_app/router/routes.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({Key? key}) : super(key: key);
+
+  void handleAddNewCategory(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteAliasData.createCategory);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,7 @@ class CategoriesWidget extends StatelessWidget {
                 style: TextThemeBox.title(18),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => handleAddNewCategory(context),
                 child: const Text('Add'),
                 style: ButtonThemeBox.primaryButton(5, 12),
               )
