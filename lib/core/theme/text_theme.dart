@@ -18,12 +18,12 @@ class TextThemeShelf {
         color: color ?? ColorThemeShelf.primaryDark,
       );
 
-  static const TextStyle subtitle = TextStyle(
-    fontSize: 13,
-    fontWeight: FontWeight.normal,
-    height: 1.2,
-    color: ColorThemeShelf.subtitleColor,
-  );
+  static TextStyle subtitle(double fontSize) => TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.normal,
+        height: 1.2,
+        color: ColorThemeShelf.subtitleColor,
+      );
 
   static const TextStyle button = TextStyle(
     fontSize: 12,
