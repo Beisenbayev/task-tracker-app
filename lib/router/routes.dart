@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/app/archives/archives_page.dart';
-import 'package:to_do_app/app/create_categoty/create_category_page.dart';
+import 'package:to_do_app/app/category/category_page.dart';
 import 'package:to_do_app/app/home/home_page.dart';
 import 'package:to_do_app/app/tasks/create_task_page.dart';
 import 'package:to_do_app/app/tasks/edit_task_page.dart';
