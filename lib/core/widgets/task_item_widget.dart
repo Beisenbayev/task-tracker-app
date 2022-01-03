@@ -24,7 +24,7 @@ class TaskItemWidget extends StatelessWidget {
       width: double.infinity,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: ColorsTheme.primaryBackground,
+        color: ColorThemeShelf.primaryBackground,
         borderRadius: BorderRadius.circular(16),
         boxShadow: const [
           BoxShadow(
@@ -42,12 +42,12 @@ class TaskItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(icon, size: 24, color: ColorsTheme.primaryDark),
+              Icon(icon, size: 24, color: ColorThemeShelf.primaryDark),
               const SizedBox(width: 18),
               Expanded(
                 child: Text(
                   title,
-                  style: TextThemeBox.lightTitle(16),
+                  style: TextThemeShelf.lightTitle(16),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -109,14 +109,14 @@ class _TaskItemWidgetMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color color = isSelected
-        ? ColorsTheme.selectedBackground
-        : ColorsTheme.unselectedBackground;
+        ? ColorThemeShelf.selectedBackground
+        : ColorThemeShelf.unselectedBackground;
 
     final Widget selectIcon = isSelected
         ? const Icon(
             Icons.done,
             size: 12,
-            color: ColorsTheme.selectedForeground,
+            color: ColorThemeShelf.selectedForeground,
           )
         : const SizedBox.shrink();
 

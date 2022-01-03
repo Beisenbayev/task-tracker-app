@@ -45,7 +45,7 @@ class _RoundedButton extends StatelessWidget {
       width: 50,
       height: 50,
       decoration: BoxDecoration(
-        color: ColorsTheme.primaryDark,
+        color: ColorThemeShelf.primaryDark,
         borderRadius: BorderRadius.circular(100),
       ),
       clipBehavior: Clip.hardEdge,
@@ -54,7 +54,7 @@ class _RoundedButton extends StatelessWidget {
           const Center(
             child: Icon(
               Icons.done,
-              color: ColorsTheme.primaryLight,
+              color: ColorThemeShelf.primaryLight,
             ),
           ),
           Material(

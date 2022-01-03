@@ -64,9 +64,9 @@ class _TapBarWidgetItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backgroundColor =
-        isSelected ? ColorsTheme.primaryLight : ColorsTheme.primaryDark;
+        isSelected ? ColorThemeShelf.primaryLight : ColorThemeShelf.primaryDark;
     final textColor =
-        isSelected ? ColorsTheme.primaryDark : ColorsTheme.primaryLight;
+        isSelected ? ColorThemeShelf.primaryDark : ColorThemeShelf.primaryLight;
 
     return GestureDetector(
       child: Container(
@@ -77,7 +77,7 @@ class _TapBarWidgetItem extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextThemeBox.title(16, textColor),
+          style: TextThemeShelf.title(16, textColor),
         ),
       ),
       onTap: () => onTap(index),

@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsTheme.primaryBackground,
+      backgroundColor: ColorThemeShelf.primaryBackground,
       body: SafeArea(
         child: Column(
           children: [

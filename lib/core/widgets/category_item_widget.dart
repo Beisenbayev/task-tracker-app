@@ -114,13 +114,13 @@ class _CategoryItemInfoWidget extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextThemeBox.title(16),
+            style: TextThemeShelf.title(16),
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 5),
           Text(
             '+$taskCount task',
-            style: TextThemeBox.subtitle,
+            style: TextThemeShelf.subtitle,
           ),
         ],
       ),

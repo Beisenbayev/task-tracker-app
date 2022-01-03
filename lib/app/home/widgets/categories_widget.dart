@@ -28,12 +28,12 @@ class CategoriesWidget extends StatelessWidget {
             children: [
               Text(
                 'Categories',
-                style: TextThemeBox.title(18),
+                style: TextThemeShelf.title(18),
               ),
               ElevatedButton(
                 onPressed: () => handleAddNewCategory(context),
                 child: const Text('Add'),
-                style: ButtonThemeBox.primaryButton(5, 12),
+                style: ButtonThemeShelf.primaryButton(5, 12),
               )
             ],
           ),
