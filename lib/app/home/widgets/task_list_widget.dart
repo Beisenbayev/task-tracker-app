@@ -20,7 +20,7 @@ class TaskListWidget extends StatelessWidget {
         left: PaddingConsts.horizontal,
       ),
       decoration: const BoxDecoration(
-        color: ColorsTheme.secondaryBackground,
+        color: ColorThemeShelf.secondaryBackground,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(45),
           topRight: Radius.circular(45),
@@ -31,14 +31,14 @@ class TaskListWidget extends StatelessWidget {
         children: [
           _TaskListWidgetTitle(),
           const SizedBox(height: 15),
-          const Divider(height: 2, color: Color(0xffeaeaea)),
+          const Divider(height: 2, color: Color(0xffcccccc)),
           const SizedBox(height: 25),
           Expanded(child: _TaskListWidgetItems()),
           const SizedBox(height: 25),
           ElevatedButton(
             onPressed: () {},
             child: const Text('Select All Task'),
-            style: ButtonThemeBox.primaryButton(20, 35),
+            style: ButtonThemeShelf.primaryButton(20, 35),
           )
         ],
       ),
@@ -53,11 +53,11 @@ class _TaskListWidgetTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('Task List', style: TextThemeBox.title(18)),
+        Text('Task List', style: TextThemeShelf.title(18)),
         ElevatedButton(
           onPressed: () {},
           child: const Text('Add Task'),
-          style: ButtonThemeBox.primaryButton(17, 25),
+          style: ButtonThemeShelf.primaryButton(17, 25),
         )
       ],
     );

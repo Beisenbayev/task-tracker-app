@@ -2,6 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do_app/hive/entity/category.dart';
 import 'package:to_do_app/hive/entity/task.dart';
+import 'package:to_do_app/hive/hive_boxes.dart';
 
 void initHiveAdapters() {
   if (!Hive.isAdapterRegistered(0)) {
@@ -13,9 +14,8 @@ void initHiveAdapters() {
 }
 
 Future<void> initHiveBoxes() async {
-  await Hive.openBox<Task>('categories_box');
-  await Hive.openBox<Task>('tasks_box');
-  await Hive.openBox<Task>('archives_box');
+  await Hive.openBox<Category>(HiveBoxAlias.categories);
+  await Hive.openBox<Task>(HiveBoxAlias.archives);
 }
 
 Future<void> deleteHiveData() async {

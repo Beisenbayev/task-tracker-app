@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/app/archives/archives_page.dart';
+import 'package:to_do_app/app/category/category_page.dart';
 import 'package:to_do_app/app/home/home_page.dart';
 import 'package:to_do_app/app/tasks/create_task_page.dart';
 import 'package:to_do_app/app/tasks/edit_task_page.dart';
 import 'package:to_do_app/app/tasks/tasks_page.dart';
-import 'package:to_do_app/router/not_found_router_page.dart';
+import 'package:to_do_app/core/models/category_model.dart';
+import 'package:to_do_app/core/models/home_page_model.dart';
+import 'package:to_do_app/router/not_found_page.dart';
 
 class RouteAliasData {
   static const String home = 'home';
+  static const String category = 'home/category';
+  //
   static const String tasks = 'tasks';
   static const String createTask = 'tasks/create-task';
   static const String editTask = 'tasks/edit-task';
@@ -16,7 +21,6 @@ class RouteAliasData {
 
 class RoutesData {
   static final Map<String, Widget Function(BuildContext)> routes = {
-    RouteAliasData.home: (context) => const HomePage(),
     RouteAliasData.tasks: (context) => const TasksPage(),
     RouteAliasData.createTask: (context) => CreateTaskPage(),
     RouteAliasData.archives: (context) => const ArchivesPage(),
@@ -26,6 +30,26 @@ class RoutesData {
 
   static onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteAliasData.home:
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return HomePageProvider(
+            model: HomePageModel(),
+            child: const HomePage(),
+          );
+        });
+
+      case RouteAliasData.category:
+        int? categoryKey;
+        if (settings.arguments != null) {
+          categoryKey = settings.arguments as int;
+        }
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return CategoryModelProvider(
+            model: CategoryModel(categoryKey),
+            child: const CategoryPage(),
+          );
+        });
+
       case RouteAliasData.editTask:
         final taskKey = settings.arguments as int;
         return MaterialPageRoute(

@@ -2,12 +2,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:to_do_app/core/consts/padding_consts.dart';
+import 'package:to_do_app/core/storage/color_data_storage.dart';
+import 'package:to_do_app/core/storage/icon_data_storage.dart';
 import 'package:to_do_app/core/theme/button_theme.dart';
 import 'package:to_do_app/core/theme/text_theme.dart';
 import 'package:to_do_app/core/widgets/category_item_widget.dart';
+import 'package:to_do_app/hive/entity/category.dart';
+import 'package:to_do_app/router/routes.dart';
 
 class CategoriesWidget extends StatelessWidget {
-  const CategoriesWidget({Key? key}) : super(key: key);
+  final List<Category> categoris;
+  final int selectedIndex;
+  final void Function(int) handleChangeCategory;
+  final void Function(int) handleEditCategory;
+
+  const CategoriesWidget({
+    Key? key,
+    required this.categoris,
+    required this.selectedIndex,
+    required this.handleChangeCategory,
+    required this.handleEditCategory,
+  }) : super(key: key);
+
+  void handleAddNewCategory(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteAliasData.category);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +42,12 @@ class CategoriesWidget extends StatelessWidget {
             children: [
               Text(
                 'Categories',
-                style: TextThemeBox.title(18),
+                style: TextThemeShelf.title(18),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => handleAddNewCategory(context),
                 child: const Text('Add'),
-                style: ButtonThemeBox.primaryButton(5, 12),
+                style: ButtonThemeShelf.primaryButton(5, 12),
               )
             ],
           ),
@@ -39,20 +58,28 @@ class CategoriesWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: PaddingConsts.horizontal),
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
+            itemCount: categoris.length,
             itemBuilder: (BuildContext context, int index) {
-              return CategoryItemWidget(
-                color: const Color(0xFFFFFCE3),
-                activeColor: const Color(0xFFFFF387),
-                icon: Icons.work,
-                title: 'Works',
-                taskCount: 10,
-                isSelected: (index == 1),
+              final category = categoris[index];
+              final colorData = ColorsCollection.colors[category.colorId];
+              final icon = IconsCollection.icons[category.iconId];
+
+              return GestureDetector(
+                onTap: () => handleChangeCategory(index),
+                onLongPress: () => handleEditCategory(index),
+                child: CategoryItemWidget(
+                  color: colorData.color,
+                  activeColor: colorData.activeColor,
+                  icon: icon,
+                  title: category.title,
+                  taskCount: 10,
+                  isSelected: (index == selectedIndex),
+                ),
               );
             },
             separatorBuilder: (BuildContext context, int index) {
               return const SizedBox(width: 16);
             },
-            itemCount: 9,
           ),
         ),
       ],

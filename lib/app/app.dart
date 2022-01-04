@@ -8,7 +8,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ToDo',
-      theme: ThemeData(primarySwatch: Colors.deepOrange),
       routes: RoutesData.routes,
       initialRoute: RoutesData.initialRoute,
       onGenerateRoute: (settings) => RoutesData.onGenerateRoute(settings),
