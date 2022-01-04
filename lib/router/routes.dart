@@ -5,6 +5,7 @@ import 'package:to_do_app/app/home/home_page.dart';
 import 'package:to_do_app/app/tasks/create_task_page.dart';
 import 'package:to_do_app/app/tasks/edit_task_page.dart';
 import 'package:to_do_app/app/tasks/tasks_page.dart';
+import 'package:to_do_app/core/models/category_model.dart';
 import 'package:to_do_app/router/not_found_page.dart';
 
 class RouteAliasData {
@@ -20,7 +21,6 @@ class RouteAliasData {
 class RoutesData {
   static final Map<String, Widget Function(BuildContext)> routes = {
     RouteAliasData.home: (context) => const HomePage(),
-    RouteAliasData.category: (context) => const CategoryPage(),
     //
     RouteAliasData.tasks: (context) => const TasksPage(),
     RouteAliasData.createTask: (context) => CreateTaskPage(),
@@ -31,6 +31,17 @@ class RoutesData {
 
   static onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteAliasData.category:
+        int? categoryKey;
+        if (settings.arguments != null) {
+          categoryKey = settings.arguments as int;
+        }
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return CategoryModelProvider(
+            model: CategoryModel(categoryKey),
+            child: const CategoryPage(),
+          );
+        });
       case RouteAliasData.editTask:
         final taskKey = settings.arguments as int;
         return MaterialPageRoute(
