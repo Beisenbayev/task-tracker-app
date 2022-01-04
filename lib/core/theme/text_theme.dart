@@ -25,6 +25,13 @@ class TextThemeShelf {
         color: ColorThemeShelf.subtitleColor,
       );
 
+  static const TextStyle text = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    height: 1.2,
+    color: ColorThemeShelf.primaryDark,
+  );
+
   static const TextStyle button = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.bold,
