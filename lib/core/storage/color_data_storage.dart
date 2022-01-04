@@ -13,17 +13,17 @@ class ColorData {
 class ColorsCollection {
   static List<ColorData> colors = [
     ColorData( //GREEN
-      color: const Color(0xFFEDFFE3),
+      color: const Color(0x1F52D22E),
       activeColor: const Color(0xFF52D22E),
     ),
 
     ColorData( //YELLOW
-      color: const Color(0xFFFFFCE3),
+      color: const Color(0x1FFFF387),
       activeColor: const Color(0xFFFFF387),
     ),
 
     ColorData( //PERPLE
-      color: const Color(0xFFE3E6FF),
+      color: const Color(0x1F6270F0),
       activeColor: const Color(0xFF6270F0),
     ),
 
