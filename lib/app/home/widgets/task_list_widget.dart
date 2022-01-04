@@ -31,7 +31,7 @@ class TaskListWidget extends StatelessWidget {
         children: [
           _TaskListWidgetTitle(),
           const SizedBox(height: 15),
-          const Divider(height: 2, color: Color(0xffeaeaea)),
+          const Divider(height: 2, color: Color(0xffcccccc)),
           const SizedBox(height: 25),
           Expanded(child: _TaskListWidgetItems()),
           const SizedBox(height: 25),

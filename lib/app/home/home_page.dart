@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/app/home/widgets/categories_widget.dart';
 import 'package:to_do_app/app/home/widgets/task_list_widget.dart';
+import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 import 'package:to_do_app/core/widgets/tap_bar_widget.dart';
 
@@ -27,13 +28,18 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Column(
           children: [
-            TapBarWidget(
-              currentIndex: _index,
-              items: const <TapBarWidgetItem>[
-                TapBarWidgetItem(text: 'Task List'),
-                TapBarWidgetItem(text: 'Completed')
-              ],
-              onTap: _changeIndex,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: PaddingConsts.horizontal,
+              ),
+              child: TapBarWidget(
+                currentIndex: _index,
+                items: const <TapBarWidgetItem>[
+                  TapBarWidgetItem(text: 'Task List'),
+                  TapBarWidgetItem(text: 'Completed')
+                ],
+                onTap: _changeIndex,
+              ),
             ),
             const SizedBox(height: 24),
             const CategoriesWidget(),
