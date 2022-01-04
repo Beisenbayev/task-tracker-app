@@ -9,7 +9,7 @@ import 'package:to_do_app/router/not_found_page.dart';
 
 class RouteAliasData {
   static const String home = 'home';
-  static const String createCategory = 'home/create-category';
+  static const String category = 'home/category';
   //
   static const String tasks = 'tasks';
   static const String createTask = 'tasks/create-task';
@@ -20,7 +20,7 @@ class RouteAliasData {
 class RoutesData {
   static final Map<String, Widget Function(BuildContext)> routes = {
     RouteAliasData.home: (context) => const HomePage(),
-    RouteAliasData.createCategory: (context) => const CreateCategoryPage(),
+    RouteAliasData.category: (context) => const CategoryPage(),
     //
     RouteAliasData.tasks: (context) => const TasksPage(),
     RouteAliasData.createTask: (context) => CreateTaskPage(),

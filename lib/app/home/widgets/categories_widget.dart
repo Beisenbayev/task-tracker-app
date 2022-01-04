@@ -11,7 +11,7 @@ class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({Key? key}) : super(key: key);
 
   void handleAddNewCategory(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteAliasData.createCategory);
+    Navigator.of(context).pushNamed(RouteAliasData.category);
   }
 
   @override
