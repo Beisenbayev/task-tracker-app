@@ -14,7 +14,7 @@ void initHiveAdapters() {
 }
 
 Future<void> initHiveBoxes() async {
-  await Hive.openBox<Task>(HiveBoxAlias.categories);
+  await Hive.openBox<Category>(HiveBoxAlias.categories);
   await Hive.openBox<Task>(HiveBoxAlias.archives);
 }
 
