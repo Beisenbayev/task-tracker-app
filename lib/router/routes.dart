@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/app/archives/archives_page.dart';
 import 'package:to_do_app/app/category/category_page.dart';
 import 'package:to_do_app/app/home/home_page.dart';
+import 'package:to_do_app/app/task/task_page.dart';
 import 'package:to_do_app/app/tasks/create_task_page.dart';
-import 'package:to_do_app/app/tasks/edit_task_page.dart';
 import 'package:to_do_app/app/tasks/tasks_page.dart';
 import 'package:to_do_app/core/models/category_model.dart';
 import 'package:to_do_app/core/models/home_page_model.dart';
+import 'package:to_do_app/core/models/task_model.dart';
 import 'package:to_do_app/router/not_found_page.dart';
 
 class RouteAliasData {
   static const String home = 'home';
   static const String category = 'home/category';
+  static const String task = 'home/task';
   //
   static const String tasks = 'tasks';
   static const String createTask = 'tasks/create-task';
@@ -50,11 +52,18 @@ class RoutesData {
           );
         });
 
-      case RouteAliasData.editTask:
-        final taskKey = settings.arguments as int;
-        return MaterialPageRoute(
-          builder: (BuildContext context) => EditTaskPage(taskKey: taskKey),
-        );
+      case RouteAliasData.task:
+        int? taskKey;
+        if (settings.arguments != null) {
+          taskKey = settings.arguments as int;
+        }
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return TaskModelProvider(
+            model: TaskModel(taskKey),
+            child: const TaskPage(),
+          );
+        });
+
       default:
         return MaterialPageRoute<void>(
           settings: settings,
