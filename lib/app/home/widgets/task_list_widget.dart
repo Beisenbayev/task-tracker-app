@@ -5,9 +5,14 @@ import 'package:to_do_app/core/theme/button_theme.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 import 'package:to_do_app/core/theme/text_theme.dart';
 import 'package:to_do_app/core/widgets/task_item_widget.dart';
+import 'package:to_do_app/router/routes.dart';
 
 class TaskListWidget extends StatelessWidget {
   const TaskListWidget({Key? key}) : super(key: key);
+
+  void handleAddNewTask(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteAliasData.task);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,9 @@ class TaskListWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _TaskListWidgetTitle(),
+          _TaskListWidgetTitle(
+            handleAddNewTask: handleAddNewTask,
+          ),
           const SizedBox(height: 15),
           const Divider(height: 2, color: Color(0xffcccccc)),
           const SizedBox(height: 25),
@@ -47,6 +54,10 @@ class TaskListWidget extends StatelessWidget {
 }
 
 class _TaskListWidgetTitle extends StatelessWidget {
+  final void Function(BuildContext) handleAddNewTask;
+
+  const _TaskListWidgetTitle({required this.handleAddNewTask});
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -55,7 +66,7 @@ class _TaskListWidgetTitle extends StatelessWidget {
       children: [
         Text('Task List', style: TextThemeShelf.title(18)),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () => handleAddNewTask(context),
           child: const Text('Add Task'),
           style: ButtonThemeShelf.primaryButton(17, 25),
         )
