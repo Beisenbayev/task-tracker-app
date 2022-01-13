@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/app/archives/archives_page.dart';
 import 'package:to_do_app/app/category/category_page.dart';
 import 'package:to_do_app/app/home/home_page.dart';
 import 'package:to_do_app/app/task/task_page.dart';
-import 'package:to_do_app/app/tasks/create_task_page.dart';
-import 'package:to_do_app/app/tasks/tasks_page.dart';
 import 'package:to_do_app/core/models/category_model.dart';
 import 'package:to_do_app/core/models/home_page_model.dart';
 import 'package:to_do_app/core/models/task_model.dart';
@@ -14,19 +11,10 @@ class RouteAliasData {
   static const String home = 'home';
   static const String category = 'home/category';
   static const String task = 'home/task';
-  //
-  static const String tasks = 'tasks';
-  static const String createTask = 'tasks/create-task';
-  static const String editTask = 'tasks/edit-task';
-  static const String archives = 'archives';
 }
 
 class RoutesData {
-  static final Map<String, Widget Function(BuildContext)> routes = {
-    RouteAliasData.tasks: (context) => const TasksPage(),
-    RouteAliasData.createTask: (context) => CreateTaskPage(),
-    RouteAliasData.archives: (context) => const ArchivesPage(),
-  };
+  static final Map<String, Widget Function(BuildContext)> routes = {};
 
   static const String initialRoute = RouteAliasData.home;
 
