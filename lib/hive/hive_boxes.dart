@@ -11,6 +11,7 @@ class HiveBoxAlias {
 class HiveBoxes {
   static Box<Category> getCategoriesBox() =>
       Hive.box<Category>(HiveBoxAlias.categories);
-  static Box<Task> getTasksBox(id) => Hive.box<Task>(HiveBoxAlias.tasks(id));
+  static Future<Box<Task>> getTasksBox(int id) =>
+      Hive.openBox<Task>(HiveBoxAlias.tasks(id));
   static Box<Task> getArchivesBox() => Hive.box<Task>(HiveBoxAlias.archives);
 }
