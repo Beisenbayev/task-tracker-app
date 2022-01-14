@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:to_do_app/core/consts/padding_consts.dart';
+import 'package:to_do_app/app/task/widgets/task_prototype_widget.dart';
+import 'package:to_do_app/app/task/widgets/task_settings_widget.dart';
+import 'package:to_do_app/core/models/task_model.dart';
+import 'package:to_do_app/core/storage/icon_data_storage.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 
 class TaskPage extends StatelessWidget {
@@ -8,72 +11,26 @@ class TaskPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _model = TaskModelProvider.of(context)!.model;
+
     return Scaffold(
       backgroundColor: ColorThemeShelf.primaryBackground,
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _TaskPageBody(),
+            const SizedBox.shrink(), //replasment for navbar
+            TaskPrototypeWidget(
+              icon: IconsCollection.icons[_model.iconId],
+              title: _model.title,
+              describtion: _model.describtion,
+              isDone: true,
+            ),
+            const TaskSettingsWidget(),
           ],
         ),
       ),
-    );
-  }
-}
-
-class _TaskPageBody extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        right: PaddingConsts.horizontal,
-        bottom: PaddingConsts.vertical,
-        left: PaddingConsts.horizontal,
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              _TaskIconWidget(icon: Icons.ballot),
-              const SizedBox(width: 16),
-              Expanded(
-                child: TextFormField(
-                  maxLines: 1,
-                  decoration: const InputDecoration(
-                    label: Text('Title'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Expanded(
-            child: TextFormField(
-              minLines: null,
-              maxLines: null,
-              expands: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _TaskIconWidget extends StatelessWidget {
-  final IconData icon;
-
-  const _TaskIconWidget({required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 75,
-      height: 75,
-      child: Icon(icon),
     );
   }
 }
