@@ -22,6 +22,7 @@ class CategoryPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox.shrink(), //replasment for navbar
             CategoryPrototypeWidget(
               color: colorData.color,
               activeColor: colorData.activeColor,
