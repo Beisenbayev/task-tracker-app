@@ -11,13 +11,13 @@ class Task extends HiveObject {
   final String describtion;
 
   @HiveField(3)
-  final String iconId;
+  final int iconId;
 
   @HiveField(4)
-  final String isDone;
+  final bool isDone;
 
   @HiveField(5)
-  final String isMarked;
+  final bool isMarked;
 
   Task({
     required this.title,

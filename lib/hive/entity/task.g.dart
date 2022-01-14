@@ -19,9 +19,9 @@ class TaskAdapter extends TypeAdapter<Task> {
     return Task(
       title: fields[1] as String,
       describtion: fields[2] as String,
-      iconId: fields[3] as String,
-      isDone: fields[4] as String,
-      isMarked: fields[5] as String,
+      iconId: fields[3] as int,
+      isDone: fields[4] as bool,
+      isMarked: fields[5] as bool,
     );
   }
 
