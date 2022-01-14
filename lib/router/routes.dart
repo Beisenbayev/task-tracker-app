@@ -41,13 +41,11 @@ class RoutesData {
         });
 
       case RouteAliasData.task:
-        int? taskKey;
-        if (settings.arguments != null) {
-          taskKey = settings.arguments as int;
-        }
+        final taskIndexData = settings.arguments as TaskIndexData;
+
         return MaterialPageRoute(builder: (BuildContext context) {
           return TaskModelProvider(
-            model: TaskModel(taskKey),
+            model: TaskModel(taskIndexData),
             child: const TaskPage(),
           );
         });
