@@ -7,14 +7,14 @@ import 'package:to_do_app/core/theme/text_theme.dart';
 class TaskItemWidget extends StatelessWidget {
   final IconData icon;
   final String title;
-  final bool isSelected;
+  final bool isDone;
   final bool isMarked;
 
   const TaskItemWidget({
     Key? key,
     required this.icon,
     required this.title,
-    required this.isSelected,
+    required this.isDone,
     required this.isMarked,
   }) : super(key: key);
 
@@ -52,7 +52,7 @@ class TaskItemWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 18),
-              _TaskItemWidgetMark(isSelected: isSelected),
+              _TaskItemWidgetMark(isDone: isDone),
             ],
           ),
         ),
@@ -100,19 +100,19 @@ class TaskItemWidget extends StatelessWidget {
 }
 
 class _TaskItemWidgetMark extends StatelessWidget {
-  final bool isSelected;
+  final bool isDone;
 
   const _TaskItemWidgetMark({
-    required this.isSelected,
+    required this.isDone,
   });
 
   @override
   Widget build(BuildContext context) {
-    final Color color = isSelected
+    final Color color = isDone
         ? ColorThemeShelf.selectedBackground
         : ColorThemeShelf.unselectedBackground;
 
-    final Widget selectIcon = isSelected
+    final Widget selectIcon = isDone
         ? const Icon(
             Icons.done,
             size: 12,

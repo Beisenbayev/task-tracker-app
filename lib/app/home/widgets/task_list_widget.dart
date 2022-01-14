@@ -84,7 +84,7 @@ class _TaskListWidgetItems extends StatelessWidget {
         return TaskItemWidget(
           icon: task.icon,
           title: task.title,
-          isSelected: task.isSelected,
+          isDone: task.isDone,
           isMarked: false,
         );
       },
@@ -99,9 +99,9 @@ class _TaskListWidgetItems extends StatelessWidget {
 class Task {
   final IconData icon;
   final String title;
-  final bool isSelected;
+  final bool isDone;
 
-  Task(this.icon, this.title, this.isSelected);
+  Task(this.icon, this.title, this.isDone);
 }
 
 class TasksCollection {
