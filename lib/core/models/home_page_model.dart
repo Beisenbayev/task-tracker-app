@@ -52,6 +52,16 @@ class HomePageModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void selectAllTasks() async {
+    final taskKeys = _tasksBox.keys.toList();
+    for (var key in taskKeys) {
+      final task = _tasksBox.get(key);
+      task!.isDone = true;
+      await _tasksBox.put(key, task);
+    }
+    notifyListeners();
+  }
+
   void toggleTaskIsDone(int index) async {
     final task = _tasksBox.getAt(index);
     task!.isDone = !task.isDone;

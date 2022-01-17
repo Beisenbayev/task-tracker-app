@@ -11,9 +11,10 @@ import 'package:to_do_app/hive/entity/task.dart';
 class TaskListWidget extends StatelessWidget {
   final List<Task> tasks;
   final bool isButtonAvailable;
-  final void Function(int?) handelConfigureTask;
+  final void Function() selectAllTasks;
   final void Function(int) toggleTaskIsDone;
   final void Function(int) toggleTaskIsMarked;
+  final void Function(int?) handelConfigureTask;
   final void Function(int) handleArchiveTask;
   final void Function(int) handleDeleteTask;
 
@@ -21,16 +22,17 @@ class TaskListWidget extends StatelessWidget {
     Key? key,
     required this.tasks,
     required this.isButtonAvailable,
-    required this.handelConfigureTask,
+    required this.selectAllTasks,
     required this.toggleTaskIsDone,
     required this.toggleTaskIsMarked,
+    required this.handelConfigureTask,
     required this.handleArchiveTask,
     required this.handleDeleteTask,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final onPressed = tasks.isEmpty ? null : () {};
+    final onPressed = tasks.isEmpty ? null : selectAllTasks;
     final buttonStyle = tasks.isEmpty
         ? ButtonThemeShelf.disabledButton(20, 35)
         : ButtonThemeShelf.primaryButton(20, 35);
