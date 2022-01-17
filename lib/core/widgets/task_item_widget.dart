@@ -10,6 +10,7 @@ class TaskItemWidget extends StatelessWidget {
   final bool isDone;
   final bool isMarked;
   final void Function() toggleIsDone;
+  final void Function() toggleIsMarked;
   final void Function() archiveTask;
   final void Function() deleteTask;
   final void Function() editTask;
@@ -21,6 +22,7 @@ class TaskItemWidget extends StatelessWidget {
     required this.isDone,
     required this.isMarked,
     required this.toggleIsDone,
+    required this.toggleIsMarked,
     required this.archiveTask,
     required this.deleteTask,
     required this.editTask,
@@ -63,7 +65,10 @@ class TaskItemWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 18),
-                _TaskItemWidgetMark(isDone: isDone),
+                _TaskItemWidgetMark(
+                  isDone: isDone,
+                  isMarked: isMarked,
+                ),
               ],
             ),
           ),
@@ -71,7 +76,7 @@ class TaskItemWidget extends StatelessWidget {
             motion: const DrawerMotion(),
             children: [
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) => toggleIsMarked(),
                 backgroundColor: const Color(0xFF7BC043),
                 foregroundColor: Colors.white,
                 icon: isMarked ? Icons.bookmark_remove : Icons.bookmark_add,
@@ -106,33 +111,57 @@ class TaskItemWidget extends StatelessWidget {
 
 class _TaskItemWidgetMark extends StatelessWidget {
   final bool isDone;
+  final bool isMarked;
 
   const _TaskItemWidgetMark({
     required this.isDone,
+    required this.isMarked,
   });
 
   @override
   Widget build(BuildContext context) {
-    final Color color = isDone
+    final markWidget = isMarked
+        ? Container(
+            width: 20,
+            height: 20,
+            margin: const EdgeInsets.only(right: 5),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF387),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: const Icon(
+              Icons.star_rounded,
+              size: 18,
+              color: Colors.white,
+            ),
+          )
+        : const SizedBox.shrink();
+
+    final Color selectColor = isDone
         ? ColorThemeShelf.selectedBackground
         : ColorThemeShelf.unselectedBackground;
 
     final Widget selectIcon = isDone
         ? const Icon(
             Icons.done,
-            size: 12,
+            size: 18,
             color: ColorThemeShelf.selectedForeground,
           )
         : const SizedBox.shrink();
 
-    return Container(
-      width: 20,
-      height: 20,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: selectIcon,
+    return Row(
+      children: [
+        markWidget,
+        Container(
+          width: 20,
+          height: 20,
+          decoration: BoxDecoration(
+            color: selectColor,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: selectIcon,
+        ),
+      ],
     );
   }
 }

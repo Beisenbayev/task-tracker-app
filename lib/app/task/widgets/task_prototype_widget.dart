@@ -84,7 +84,7 @@ class _TaskItemWidgetMark extends StatelessWidget {
     final Widget selectIcon = isDone
         ? const Icon(
             Icons.done,
-            size: 12,
+            size: 18,
             color: ColorThemeShelf.selectedForeground,
           )
         : const SizedBox.shrink();

@@ -59,6 +59,13 @@ class HomePageModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleTaskIsMarked(int index) async {
+    final task = _tasksBox.getAt(index);
+    task!.isMarked = !task.isMarked;
+    await _tasksBox.putAt(index, task);
+    notifyListeners();
+  }
+
   void handleArchiveTask(int index) async {
     final task = _tasksBox.getAt(index);
     await _tasksBox.deleteAt(index);

@@ -13,6 +13,7 @@ class TaskListWidget extends StatelessWidget {
   final bool isButtonAvailable;
   final void Function(int?) handelConfigureTask;
   final void Function(int) toggleTaskIsDone;
+  final void Function(int) toggleTaskIsMarked;
   final void Function(int) handleArchiveTask;
   final void Function(int) handleDeleteTask;
 
@@ -22,6 +23,7 @@ class TaskListWidget extends StatelessWidget {
     required this.isButtonAvailable,
     required this.handelConfigureTask,
     required this.toggleTaskIsDone,
+    required this.toggleTaskIsMarked,
     required this.handleArchiveTask,
     required this.handleDeleteTask,
   }) : super(key: key);
@@ -57,6 +59,7 @@ class TaskListWidget extends StatelessWidget {
             child: _TaskListWidgetItems(
               tasks: tasks,
               toggleTaskIsDone: toggleTaskIsDone,
+              toggleTaskIsMarked: toggleTaskIsMarked,
               handleArchiveTask: handleArchiveTask,
               handleDeleteTask: handleDeleteTask,
               handleEditTask: handelConfigureTask,
@@ -108,6 +111,7 @@ class _TaskListWidgetTitle extends StatelessWidget {
 class _TaskListWidgetItems extends StatelessWidget {
   final List<Task> tasks;
   final void Function(int) toggleTaskIsDone;
+  final void Function(int) toggleTaskIsMarked;
   final void Function(int) handleArchiveTask;
   final void Function(int) handleDeleteTask;
   final void Function(int) handleEditTask;
@@ -115,6 +119,7 @@ class _TaskListWidgetItems extends StatelessWidget {
   const _TaskListWidgetItems({
     required this.tasks,
     required this.toggleTaskIsDone,
+    required this.toggleTaskIsMarked,
     required this.handleArchiveTask,
     required this.handleDeleteTask,
     required this.handleEditTask,
@@ -133,6 +138,7 @@ class _TaskListWidgetItems extends StatelessWidget {
           isDone: task.isDone,
           isMarked: task.isMarked,
           toggleIsDone: () => toggleTaskIsDone(index),
+          toggleIsMarked: () => toggleTaskIsMarked(index),
           archiveTask: () => handleArchiveTask(index),
           deleteTask: () => handleDeleteTask(index),
           editTask: () => handleEditTask(index),
