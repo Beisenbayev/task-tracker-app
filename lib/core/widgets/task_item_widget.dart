@@ -10,6 +10,7 @@ class TaskItemWidget extends StatelessWidget {
   final bool isDone;
   final bool isMarked;
   final void Function() toggleIsDone;
+  final void Function() archiveTask;
 
   const TaskItemWidget({
     Key? key,
@@ -18,6 +19,7 @@ class TaskItemWidget extends StatelessWidget {
     required this.isDone,
     required this.isMarked,
     required this.toggleIsDone,
+    required this.archiveTask,
   }) : super(key: key);
 
   @override
@@ -83,7 +85,7 @@ class TaskItemWidget extends StatelessWidget {
             motion: const DrawerMotion(),
             children: [
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) => archiveTask(),
                 backgroundColor: Colors.grey,
                 foregroundColor: Colors.white,
                 icon: Icons.archive,

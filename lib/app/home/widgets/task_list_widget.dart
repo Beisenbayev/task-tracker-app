@@ -13,6 +13,7 @@ class TaskListWidget extends StatelessWidget {
   final bool isButtonAvailable;
   final void Function(int?) handelConfigureTask;
   final void Function(int) toggleTaskIsDone;
+  final void Function(int) handleArchiveTask;
 
   const TaskListWidget({
     Key? key,
@@ -20,6 +21,7 @@ class TaskListWidget extends StatelessWidget {
     required this.isButtonAvailable,
     required this.handelConfigureTask,
     required this.toggleTaskIsDone,
+    required this.handleArchiveTask,
   }) : super(key: key);
 
   @override
@@ -53,6 +55,7 @@ class TaskListWidget extends StatelessWidget {
             child: _TaskListWidgetItems(
               tasks: tasks,
               toggleTaskIsDone: toggleTaskIsDone,
+              handleArchiveTask: handleArchiveTask,
             ),
           ),
           const SizedBox(height: 25),
@@ -101,10 +104,12 @@ class _TaskListWidgetTitle extends StatelessWidget {
 class _TaskListWidgetItems extends StatelessWidget {
   final List<Task> tasks;
   final void Function(int) toggleTaskIsDone;
+  final void Function(int) handleArchiveTask;
 
   const _TaskListWidgetItems({
     required this.tasks,
     required this.toggleTaskIsDone,
+    required this.handleArchiveTask,
   });
 
   @override
@@ -120,6 +125,7 @@ class _TaskListWidgetItems extends StatelessWidget {
           isDone: task.isDone,
           isMarked: task.isMarked,
           toggleIsDone: () => toggleTaskIsDone(index),
+          archiveTask: () => handleArchiveTask(index),
         );
       },
       separatorBuilder: (BuildContext context, int index) {

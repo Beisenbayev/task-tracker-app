@@ -8,6 +8,7 @@ class HomePageModel extends ChangeNotifier {
   int _categoryIndex = 0;
   late int _categoryKey;
   final Box<Category> _categoriesBox = HiveBoxes.getCategoriesBox();
+  final Box<Task> _archivesBox = HiveBoxes.getArchivesBox();
   late Box<Task> _tasksBox;
   List<Category> _categories = [];
   List<Task> _tasks = [];
@@ -55,6 +56,13 @@ class HomePageModel extends ChangeNotifier {
     final task = _tasksBox.getAt(index);
     task!.isDone = !task.isDone;
     _tasksBox.putAt(index, task);
+    notifyListeners();
+  }
+
+  void handleArchiveTask(int index) {
+    final task = _tasksBox.getAt(index);
+    _tasksBox.deleteAt(index);
+    _archivesBox.add(task!);
     notifyListeners();
   }
 }
