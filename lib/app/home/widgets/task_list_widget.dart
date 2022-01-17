@@ -30,6 +30,11 @@ class TaskListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final onPressed = tasks.isEmpty ? null : () {};
+    final buttonStyle = tasks.isEmpty
+        ? ButtonThemeShelf.disabledButton(20, 35)
+        : ButtonThemeShelf.primaryButton(20, 35);
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(
@@ -67,9 +72,9 @@ class TaskListWidget extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: onPressed,
             child: const Text('Select All Task'),
-            style: ButtonThemeShelf.primaryButton(20, 35),
+            style: buttonStyle,
           )
         ],
       ),

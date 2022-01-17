@@ -25,7 +25,7 @@ class ButtonThemeShelf {
   static ButtonStyle disabledButton(double vertical, double horizontal) =>
       ButtonStyle(
         backgroundColor:
-            MaterialStateProperty.all(ColorThemeShelf.unselectedBackground),
+            MaterialStateProperty.all(ColorThemeShelf.disabledBackground),
         foregroundColor:
             MaterialStateProperty.all(ColorThemeShelf.primaryLight),
         textStyle: MaterialStateProperty.all(TextThemeShelf.button),
