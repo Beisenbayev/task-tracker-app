@@ -52,17 +52,22 @@ class HomePageModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleTaskIsDone(int index) {
+  void toggleTaskIsDone(int index) async {
     final task = _tasksBox.getAt(index);
     task!.isDone = !task.isDone;
-    _tasksBox.putAt(index, task);
+    await _tasksBox.putAt(index, task);
     notifyListeners();
   }
 
-  void handleArchiveTask(int index) {
+  void handleArchiveTask(int index) async {
     final task = _tasksBox.getAt(index);
-    _tasksBox.deleteAt(index);
-    _archivesBox.add(task!);
+    await _tasksBox.deleteAt(index);
+    await _archivesBox.add(task!);
+    notifyListeners();
+  }
+
+  void handleDeleteTask(int index) async {
+    await _tasksBox.deleteAt(index);
     notifyListeners();
   }
 }

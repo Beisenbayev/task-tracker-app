@@ -79,6 +79,7 @@ class _HomePageState extends State<HomePage> {
                 isButtonAvailable: _model.isTasksAvailable,
                 toggleTaskIsDone: _model.toggleTaskIsDone,
                 handleArchiveTask: _model.handleArchiveTask,
+                handleDeleteTask: _model.handleDeleteTask,
               ),
             )
           ],

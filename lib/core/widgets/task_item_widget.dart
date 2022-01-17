@@ -11,6 +11,7 @@ class TaskItemWidget extends StatelessWidget {
   final bool isMarked;
   final void Function() toggleIsDone;
   final void Function() archiveTask;
+  final void Function() deleteTask;
 
   const TaskItemWidget({
     Key? key,
@@ -20,6 +21,7 @@ class TaskItemWidget extends StatelessWidget {
     required this.isMarked,
     required this.toggleIsDone,
     required this.archiveTask,
+    required this.deleteTask,
   }) : super(key: key);
 
   @override
@@ -92,7 +94,7 @@ class TaskItemWidget extends StatelessWidget {
                 label: 'Archive',
               ),
               SlidableAction(
-                onPressed: (BuildContext context) {},
+                onPressed: (BuildContext context) => deleteTask(),
                 backgroundColor: const Color(0xFFFE4A49),
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
