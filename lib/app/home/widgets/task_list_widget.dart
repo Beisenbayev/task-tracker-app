@@ -10,11 +10,13 @@ import 'package:to_do_app/hive/entity/task.dart';
 
 class TaskListWidget extends StatelessWidget {
   final List<Task> tasks;
+  final bool isButtonAvailable;
   final void Function(int?) handelConfigureTask;
 
   const TaskListWidget({
     Key? key,
     required this.tasks,
+    required this.isButtonAvailable,
     required this.handelConfigureTask,
   }) : super(key: key);
 
@@ -39,6 +41,7 @@ class TaskListWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _TaskListWidgetTitle(
+            isButtonAvailable: isButtonAvailable,
             handleAddNewTask: () => handelConfigureTask(null),
           ),
           const SizedBox(height: 15),
@@ -60,21 +63,30 @@ class TaskListWidget extends StatelessWidget {
 }
 
 class _TaskListWidgetTitle extends StatelessWidget {
+  final bool isButtonAvailable;
   final void Function() handleAddNewTask;
 
-  const _TaskListWidgetTitle({required this.handleAddNewTask});
+  const _TaskListWidgetTitle({
+    required this.isButtonAvailable,
+    required this.handleAddNewTask,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final onPressed = isButtonAvailable ? handleAddNewTask : null;
+    final style = isButtonAvailable
+        ? ButtonThemeShelf.primaryButton(17, 25)
+        : ButtonThemeShelf.disabledButton(17, 25);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text('Task List', style: TextThemeShelf.title(18)),
         ElevatedButton(
-          onPressed: handleAddNewTask,
+          onPressed: onPressed,
           child: const Text('Add Task'),
-          style: ButtonThemeShelf.primaryButton(17, 25),
+          style: style,
         )
       ],
     );

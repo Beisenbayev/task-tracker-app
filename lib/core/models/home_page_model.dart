@@ -11,10 +11,12 @@ class HomePageModel extends ChangeNotifier {
   late Box<Task> _tasksBox;
   List<Category> _categories = [];
   List<Task> _tasks = [];
+  bool _isTasksAvailable = false;
 
   int get categoryIndex => _categoryIndex;
   List<Category> get categories => _categories;
   List<Task> get tasks => _tasks;
+  bool get isTasksAvailable => _isTasksAvailable;
 
   HomePageModel() {
     _setup();
@@ -27,6 +29,7 @@ class HomePageModel extends ChangeNotifier {
 
   void _notifyCategoriesChange() {
     _categories = _categoriesBox.values.toList();
+    _isTasksAvailable = (_categories.isEmpty) ? false : true;
     notifyListeners();
   }
 

@@ -76,6 +76,7 @@ class _HomePageState extends State<HomePage> {
               child: TaskListWidget(
                 tasks: _model.tasks,
                 handelConfigureTask: _configureTask,
+                isButtonAvailable: _model.isTasksAvailable,
               ),
             )
           ],
