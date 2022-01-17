@@ -13,4 +13,6 @@ class ColorThemeShelf {
   static const selectedForeground = Color(0xff52d22e);
 
   static const unselectedBackground = Color(0xffd9d9d9);
+
+  static const disabledBackground = Color(0xffc9c9c9);
 }

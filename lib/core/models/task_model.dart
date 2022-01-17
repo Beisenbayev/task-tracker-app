@@ -21,7 +21,7 @@ class TaskModel extends ChangeNotifier {
   late final int? _taskIndex;
   final Box<Category> _categoriesBox = HiveBoxes.getCategoriesBox();
   late final Box<Task> _tasksBox;
-  String title = 'Title';
+  String title = 'Task';
   String describtion = '';
   bool isDone = false;
   bool isMarked = false;

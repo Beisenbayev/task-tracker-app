@@ -75,8 +75,13 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: TaskListWidget(
                 tasks: _model.tasks,
-                handelConfigureTask: _configureTask,
                 isButtonAvailable: _model.isTasksAvailable,
+                selectAllTasks: _model.selectAllTasks,
+                toggleTaskIsDone: _model.toggleTaskIsDone,
+                toggleTaskIsMarked: _model.toggleTaskIsMarked,
+                handelConfigureTask: _configureTask,
+                handleArchiveTask: _model.handleArchiveTask,
+                handleDeleteTask: _model.handleDeleteTask,
               ),
             )
           ],

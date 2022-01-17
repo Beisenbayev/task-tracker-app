@@ -8,6 +8,7 @@ class HomePageModel extends ChangeNotifier {
   int _categoryIndex = 0;
   late int _categoryKey;
   final Box<Category> _categoriesBox = HiveBoxes.getCategoriesBox();
+  final Box<Task> _archivesBox = HiveBoxes.getArchivesBox();
   late Box<Task> _tasksBox;
   List<Category> _categories = [];
   List<Task> _tasks = [];
@@ -48,6 +49,42 @@ class HomePageModel extends ChangeNotifier {
   void changeCategoryIndex(int index) {
     _categoryIndex = index;
     _initTasksByKey();
+    notifyListeners();
+  }
+
+  void selectAllTasks() async {
+    final taskKeys = _tasksBox.keys.toList();
+    for (var key in taskKeys) {
+      final task = _tasksBox.get(key);
+      task!.isDone = true;
+      await _tasksBox.put(key, task);
+    }
+    notifyListeners();
+  }
+
+  void toggleTaskIsDone(int index) async {
+    final task = _tasksBox.getAt(index);
+    task!.isDone = !task.isDone;
+    await _tasksBox.putAt(index, task);
+    notifyListeners();
+  }
+
+  void toggleTaskIsMarked(int index) async {
+    final task = _tasksBox.getAt(index);
+    task!.isMarked = !task.isMarked;
+    await _tasksBox.putAt(index, task);
+    notifyListeners();
+  }
+
+  void handleArchiveTask(int index) async {
+    final task = _tasksBox.getAt(index);
+    await _tasksBox.deleteAt(index);
+    await _archivesBox.add(task!);
+    notifyListeners();
+  }
+
+  void handleDeleteTask(int index) async {
+    await _tasksBox.deleteAt(index);
     notifyListeners();
   }
 }
