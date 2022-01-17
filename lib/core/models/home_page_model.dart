@@ -50,6 +50,13 @@ class HomePageModel extends ChangeNotifier {
     _initTasksByKey();
     notifyListeners();
   }
+
+  void toggleTaskIsDone(int index) {
+    final task = _tasksBox.getAt(index);
+    task!.isDone = !task.isDone;
+    _tasksBox.putAt(index, task);
+    notifyListeners();
+  }
 }
 
 class HomePageProvider extends InheritedNotifier {

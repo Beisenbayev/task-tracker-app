@@ -77,6 +77,7 @@ class _HomePageState extends State<HomePage> {
                 tasks: _model.tasks,
                 handelConfigureTask: _configureTask,
                 isButtonAvailable: _model.isTasksAvailable,
+                toggleTaskIsDone: _model.toggleTaskIsDone,
               ),
             )
           ],
