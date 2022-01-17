@@ -132,6 +132,30 @@ class _TaskListWidgetItems extends StatelessWidget {
         final Task task = tasks[index];
         final icon = IconsCollection.icons[task.iconId];
 
+        final deleteTask = task.isMarked
+            ? () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: Text(task.title),
+                    content: const Text(
+                        'You have marked this task as important, are you sure you want to delete it?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          handleDeleteTask(index);
+                          Navigator.pop(context, 'Delete');
+                        },
+                        child: const Text('Delete'),
+                      ),
+                    ],
+                  ),
+                )
+            : () => handleDeleteTask(index);
+
         return TaskItemWidget(
           icon: icon,
           title: task.title,
@@ -140,7 +164,7 @@ class _TaskListWidgetItems extends StatelessWidget {
           toggleIsDone: () => toggleTaskIsDone(index),
           toggleIsMarked: () => toggleTaskIsMarked(index),
           archiveTask: () => handleArchiveTask(index),
-          deleteTask: () => handleDeleteTask(index),
+          deleteTask: deleteTask,
           editTask: () => handleEditTask(index),
         );
       },
