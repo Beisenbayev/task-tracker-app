@@ -34,10 +34,12 @@ class TaskModel extends ChangeNotifier {
   void _setup() async {
     _categoryIndex = _taskIndexData.categoryIndex;
     _taskIndex = _taskIndexData.taskIndex;
+
     final _categoryKey = _categoriesBox.keyAt(_categoryIndex);
     _tasksBox = await HiveBoxes.getTasksBox(_categoryKey);
     final category = _categoriesBox.get(_categoryKey);
     iconId = category!.iconId;
+
     if (_taskIndex != null) {
       final task = _tasksBox.getAt(_taskIndex!);
       title = task!.title;
@@ -45,6 +47,8 @@ class TaskModel extends ChangeNotifier {
       isDone = task.isDone;
       isMarked = task.isMarked;
     }
+
+    notifyListeners();
   }
 
   void handleChangeTitle(String value) {

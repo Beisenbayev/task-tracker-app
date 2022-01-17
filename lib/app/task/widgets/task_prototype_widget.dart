@@ -8,6 +8,7 @@ class TaskPrototypeWidget extends StatelessWidget {
   final String title;
   final String describtion;
   final bool isDone;
+  final void Function() toggleIsDone;
 
   const TaskPrototypeWidget({
     Key? key,
@@ -15,6 +16,7 @@ class TaskPrototypeWidget extends StatelessWidget {
     required this.title,
     required this.describtion,
     required this.isDone,
+    required this.toggleIsDone,
   }) : super(key: key);
 
   @override
@@ -23,39 +25,42 @@ class TaskPrototypeWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: PaddingConsts.horizontal,
       ),
-      child: Container(
-        width: double.infinity,
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-          color: ColorThemeShelf.primaryBackground,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.2),
-              spreadRadius: 0,
-              blurRadius: 6,
-              offset: Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 28),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(icon, size: 24, color: ColorThemeShelf.primaryDark),
-              const SizedBox(width: 18),
-              Expanded(
-                child: Text(
-                  title,
-                  style: TextThemeShelf.lightTitle(16),
-                  overflow: TextOverflow.ellipsis,
-                ),
+      child: GestureDetector(
+        onTap: toggleIsDone,
+        child: Container(
+          width: double.infinity,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            color: ColorThemeShelf.primaryBackground,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: const [
+              BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+                spreadRadius: 0,
+                blurRadius: 6,
+                offset: Offset(0, 4),
               ),
-              const SizedBox(width: 18),
-              _TaskItemWidgetMark(isDone: isDone),
             ],
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 28),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(icon, size: 24, color: ColorThemeShelf.primaryDark),
+                const SizedBox(width: 18),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextThemeShelf.lightTitle(16),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const SizedBox(width: 18),
+                _TaskItemWidgetMark(isDone: isDone),
+              ],
+            ),
           ),
         ),
       ),

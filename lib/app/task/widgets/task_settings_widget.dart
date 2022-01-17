@@ -13,6 +13,11 @@ class TaskSettingsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _model = TaskModelProvider.of(context)!.model;
+    final onPressed =
+        _model.title.isEmpty ? null : () => _model.saveNewTask(context);
+    final buttonStyle = _model.title.isEmpty
+        ? ButtonThemeShelf.disabledButton(20, 35)
+        : ButtonThemeShelf.primaryButton(20, 35);
 
     return Container(
       width: double.infinity,
@@ -58,9 +63,9 @@ class TaskSettingsWidget extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           ElevatedButton(
-            onPressed: () => _model.saveNewTask(context),
+            onPressed: onPressed,
             child: const Text('Save Task'),
-            style: ButtonThemeShelf.primaryButton(20, 35),
+            style: buttonStyle,
           )
         ],
       ),
