@@ -28,6 +28,11 @@ class _CategorySettingsWidgetState extends State<CategorySettingsWidget> {
   @override
   Widget build(BuildContext context) {
     final _model = CategoryModelProvider.of(context)!.model;
+    final onPressed =
+        _model.title.isEmpty ? null : () => _model.saveNewCategory(context);
+    final buttonStyle = _model.title.isEmpty
+        ? ButtonThemeShelf.disabledButton(20, 34)
+        : ButtonThemeShelf.primaryButton(20, 34);
 
     return Container(
       width: double.infinity,
@@ -74,9 +79,9 @@ class _CategorySettingsWidgetState extends State<CategorySettingsWidget> {
           ),
           const SizedBox(height: 25),
           ElevatedButton(
-            onPressed: () => _model.saveNewCategory(context),
+            onPressed: onPressed,
             child: const Text('Save Category'),
-            style: ButtonThemeShelf.primaryButton(20, 35),
+            style: buttonStyle,
           )
         ],
       ),
