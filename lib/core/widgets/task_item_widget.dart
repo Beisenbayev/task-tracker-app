@@ -12,6 +12,7 @@ class TaskItemWidget extends StatelessWidget {
   final void Function() toggleIsDone;
   final void Function() archiveTask;
   final void Function() deleteTask;
+  final void Function() editTask;
 
   const TaskItemWidget({
     Key? key,
@@ -22,12 +23,14 @@ class TaskItemWidget extends StatelessWidget {
     required this.toggleIsDone,
     required this.archiveTask,
     required this.deleteTask,
+    required this.editTask,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: toggleIsDone,
+      onLongPress: editTask,
       child: Container(
         width: double.infinity,
         clipBehavior: Clip.hardEdge,
@@ -73,13 +76,6 @@ class TaskItemWidget extends StatelessWidget {
                 foregroundColor: Colors.white,
                 icon: isMarked ? Icons.bookmark_remove : Icons.bookmark_add,
                 label: isMarked ? 'Unmark' : 'Mark',
-              ),
-              SlidableAction(
-                onPressed: (BuildContext context) {},
-                backgroundColor: const Color(0xFF0392CF),
-                foregroundColor: Colors.white,
-                icon: Icons.note_alt,
-                label: 'Edit',
               ),
             ],
           ),

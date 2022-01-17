@@ -45,7 +45,7 @@ class TaskSettingsWidget extends StatelessWidget {
                   initialValue: _model.title,
                   onChanged: _model.handleChangeTitle,
                   maxLines: 1,
-                  decoration: InputThemeShelf.outlineInput('Title'),
+                  decoration: InputThemeShelf.outlineInput(null),
                 ),
               ),
             ],

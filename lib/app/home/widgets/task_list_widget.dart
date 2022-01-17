@@ -59,6 +59,7 @@ class TaskListWidget extends StatelessWidget {
               toggleTaskIsDone: toggleTaskIsDone,
               handleArchiveTask: handleArchiveTask,
               handleDeleteTask: handleDeleteTask,
+              handleEditTask: handelConfigureTask,
             ),
           ),
           const SizedBox(height: 25),
@@ -109,12 +110,14 @@ class _TaskListWidgetItems extends StatelessWidget {
   final void Function(int) toggleTaskIsDone;
   final void Function(int) handleArchiveTask;
   final void Function(int) handleDeleteTask;
+  final void Function(int) handleEditTask;
 
   const _TaskListWidgetItems({
     required this.tasks,
     required this.toggleTaskIsDone,
     required this.handleArchiveTask,
     required this.handleDeleteTask,
+    required this.handleEditTask,
   });
 
   @override
@@ -132,6 +135,7 @@ class _TaskListWidgetItems extends StatelessWidget {
           toggleIsDone: () => toggleTaskIsDone(index),
           archiveTask: () => handleArchiveTask(index),
           deleteTask: () => handleDeleteTask(index),
+          editTask: () => handleEditTask(index),
         );
       },
       separatorBuilder: (BuildContext context, int index) {
