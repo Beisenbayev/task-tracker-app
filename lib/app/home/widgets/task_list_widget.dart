@@ -1,13 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/consts/padding_consts.dart';
+import 'package:to_do_app/core/storage/icon_data_storage.dart';
 import 'package:to_do_app/core/theme/button_theme.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 import 'package:to_do_app/core/theme/text_theme.dart';
 import 'package:to_do_app/core/widgets/task_item_widget.dart';
+import 'package:to_do_app/hive/entity/task.dart';
 
 class TaskListWidget extends StatelessWidget {
-  const TaskListWidget({Key? key}) : super(key: key);
+  final List<Task> tasks;
+  final bool isButtonAvailable;
+  final void Function(int?) handelConfigureTask;
+
+  const TaskListWidget({
+    Key? key,
+    required this.tasks,
+    required this.isButtonAvailable,
+    required this.handelConfigureTask,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +40,16 @@ class TaskListWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _TaskListWidgetTitle(),
+          _TaskListWidgetTitle(
+            isButtonAvailable: isButtonAvailable,
+            handleAddNewTask: () => handelConfigureTask(null),
+          ),
           const SizedBox(height: 15),
           const Divider(height: 2, color: Color(0xffcccccc)),
           const SizedBox(height: 25),
-          Expanded(child: _TaskListWidgetItems()),
+          Expanded(
+            child: _TaskListWidgetItems(tasks: tasks),
+          ),
           const SizedBox(height: 25),
           ElevatedButton(
             onPressed: () {},
@@ -47,17 +63,30 @@ class TaskListWidget extends StatelessWidget {
 }
 
 class _TaskListWidgetTitle extends StatelessWidget {
+  final bool isButtonAvailable;
+  final void Function() handleAddNewTask;
+
+  const _TaskListWidgetTitle({
+    required this.isButtonAvailable,
+    required this.handleAddNewTask,
+  });
+
   @override
   Widget build(BuildContext context) {
+    final onPressed = isButtonAvailable ? handleAddNewTask : null;
+    final style = isButtonAvailable
+        ? ButtonThemeShelf.primaryButton(17, 25)
+        : ButtonThemeShelf.disabledButton(17, 25);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text('Task List', style: TextThemeShelf.title(18)),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressed,
           child: const Text('Add Task'),
-          style: ButtonThemeShelf.primaryButton(17, 25),
+          style: style,
         )
       ],
     );
@@ -65,42 +94,30 @@ class _TaskListWidgetTitle extends StatelessWidget {
 }
 
 class _TaskListWidgetItems extends StatelessWidget {
+  final List<Task> tasks;
+
+  const _TaskListWidgetItems({
+    required this.tasks,
+  });
+
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
-        final Task task = TasksCollection.tasks[index];
+        final Task task = tasks[index];
+        final icon = IconsCollection.icons[task.iconId];
+
         return TaskItemWidget(
-          icon: task.icon,
+          icon: icon,
           title: task.title,
-          isSelected: task.isSelected,
-          isMarked: false,
+          isDone: task.isDone,
+          isMarked: task.isMarked,
         );
       },
       separatorBuilder: (BuildContext context, int index) {
         return const SizedBox(height: 16);
       },
-      itemCount: TasksCollection.tasks.length,
+      itemCount: tasks.length,
     );
   }
-}
-
-class Task {
-  final IconData icon;
-  final String title;
-  final bool isSelected;
-
-  Task(this.icon, this.title, this.isSelected);
-}
-
-class TasksCollection {
-  static List<Task> tasks = [
-    Task(Icons.mail, 'Email Check', true),
-    Task(Icons.work, 'Email Check and Email Check again nad again', false),
-    Task(Icons.work, 'Email Check', true),
-    Task(Icons.work, 'Email Check', false),
-    Task(Icons.work, 'Email Check', false),
-    Task(Icons.work, 'Email Check', true),
-    Task(Icons.work, 'Email Check', true),
-  ];
 }

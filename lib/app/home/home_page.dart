@@ -3,6 +3,7 @@ import 'package:to_do_app/app/home/widgets/categories_widget.dart';
 import 'package:to_do_app/app/home/widgets/task_list_widget.dart';
 import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/models/home_page_model.dart';
+import 'package:to_do_app/core/models/task_model.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 import 'package:to_do_app/core/widgets/tap_bar_widget.dart';
 import 'package:to_do_app/router/routes.dart';
@@ -16,7 +17,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _tabIndex = 0;
-  int _categoryIndex = 0;
 
   void _changeTabIndex(int index) {
     setState(() {
@@ -24,16 +24,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _changeCategoryIndex(int index) {
-    setState(() {
-      _categoryIndex = index;
-    });
-  }
-
   void _editCategory(int index) {
     Navigator.of(context).pushNamed(
       RouteAliasData.category,
       arguments: index,
+    );
+  }
+
+  void _configureTask(int? index) {
+    final _model = HomePageProvider.of(context)!.model;
+    Navigator.of(context).pushNamed(
+      RouteAliasData.task,
+      arguments: TaskIndexData(
+        categoryIndex: _model.categoryIndex,
+        taskIndex: index,
+      ),
     );
   }
 
@@ -62,13 +67,17 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 24),
             CategoriesWidget(
               categoris: _model.categories,
-              selectedIndex: _categoryIndex,
-              handleChangeCategory: _changeCategoryIndex,
+              selectedIndex: _model.categoryIndex,
+              handleChangeCategory: _model.changeCategoryIndex,
               handleEditCategory: _editCategory,
             ),
             const SizedBox(height: 33),
-            const Expanded(
-              child: TaskListWidget(),
+            Expanded(
+              child: TaskListWidget(
+                tasks: _model.tasks,
+                handelConfigureTask: _configureTask,
+                isButtonAvailable: _model.isTasksAvailable,
+              ),
             )
           ],
         ),

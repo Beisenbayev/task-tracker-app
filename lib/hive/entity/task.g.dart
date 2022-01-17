@@ -18,11 +18,11 @@ class TaskAdapter extends TypeAdapter<Task> {
     };
     return Task(
       title: fields[1] as String,
-      text: fields[2] as String,
-      colorId: fields[4] as int,
-    )
-      ..isDone = fields[3] as bool
-      ..isMarked = fields[5] as bool;
+      describtion: fields[2] as String,
+      iconId: fields[3] as int,
+      isDone: fields[4] as bool,
+      isMarked: fields[5] as bool,
+    );
   }
 
   @override
@@ -32,11 +32,11 @@ class TaskAdapter extends TypeAdapter<Task> {
       ..writeByte(1)
       ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.text)
+      ..write(obj.describtion)
       ..writeByte(3)
-      ..write(obj.isDone)
+      ..write(obj.iconId)
       ..writeByte(4)
-      ..write(obj.colorId)
+      ..write(obj.isDone)
       ..writeByte(5)
       ..write(obj.isMarked);
   }

@@ -6,8 +6,8 @@ class CategoryModel extends ChangeNotifier {
   final int? _categoryIndex;
   final _categoriesBox = HiveBoxes.getCategoriesBox();
   String title = 'Title';
-  int colorId = 2;
-  int iconId = 3;
+  int colorId = 0;
+  int iconId = 0;
 
   CategoryModel(this._categoryIndex) {
     if (_categoryIndex != null) {

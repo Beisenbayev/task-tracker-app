@@ -15,7 +15,6 @@ void initHiveAdapters() {
 
 Future<void> initHiveBoxes() async {
   await Hive.openBox<Category>(HiveBoxAlias.categories);
-  await Hive.openBox<Task>(HiveBoxAlias.archives);
 }
 
 Future<void> deleteHiveData() async {
