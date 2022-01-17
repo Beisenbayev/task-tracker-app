@@ -5,19 +5,19 @@ part 'task.g.dart';
 @HiveType(typeId: 1)
 class Task extends HiveObject {
   @HiveField(1)
-  final String title;
+  String title;
 
   @HiveField(2)
-  final String describtion;
+  String describtion;
 
   @HiveField(3)
-  final int iconId;
+  int iconId;
 
   @HiveField(4)
-  final bool isDone;
+  bool isDone;
 
   @HiveField(5)
-  final bool isMarked;
+  bool isMarked;
 
   Task({
     required this.title,
