@@ -10,6 +10,8 @@ class RouteAliasData {
   static const String home = 'home';
   static const String category = 'home/category';
   static const String task = 'home/task';
+  static const String profile = 'profile';
+  static const String menu = 'menu';
 }
 
 class RoutesData {
