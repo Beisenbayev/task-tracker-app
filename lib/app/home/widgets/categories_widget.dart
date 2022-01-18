@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/storage/color_data_storage.dart';
 import 'package:to_do_app/core/storage/icon_data_storage.dart';

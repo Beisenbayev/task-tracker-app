@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/app/task/widgets/task_prototype_widget.dart';
 import 'package:to_do_app/app/task/widgets/task_settings_widget.dart';

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/models/task_model.dart';
