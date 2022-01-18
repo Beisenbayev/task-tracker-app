@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:to_do_app/hive/entity/archive.dart';
 import 'package:to_do_app/hive/entity/category.dart';
 import 'package:to_do_app/hive/entity/task.dart';
 import 'package:to_do_app/hive/hive_boxes.dart';
@@ -8,7 +9,7 @@ class HomePageModel extends ChangeNotifier {
   int _categoryIndex = 0;
   late int _categoryKey;
   final Box<Category> _categoriesBox = HiveBoxes.getCategoriesBox();
-  final Box<Task> _archivesBox = HiveBoxes.getArchivesBox();
+  final Box<Archive> _archivesBox = HiveBoxes.getArchivesBox();
   late Box<Task> _tasksBox;
   List<Category> _categories = [];
   List<Task> _tasks = [];
@@ -77,9 +78,20 @@ class HomePageModel extends ChangeNotifier {
   }
 
   void handleArchiveTask(int index) async {
-    final task = _tasksBox.getAt(index);
-    await _tasksBox.deleteAt(index);
-    await _archivesBox.add(task!);
+    final taskKey = _tasksBox.keyAt(index);
+    final task = _tasksBox.get(taskKey);
+    final archivedTask = Archive(
+      title: task!.title,
+      describtion: task.describtion,
+      iconId: task.iconId,
+      isDone: task.isDone,
+      isMarked: task.isMarked,
+      taskKey: taskKey,
+      categoryKey: _categoryKey,
+    );
+
+    await _tasksBox.delete(taskKey);
+    await _archivesBox.add(archivedTask);
     notifyListeners();
   }
 
