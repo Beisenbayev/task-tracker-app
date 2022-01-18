@@ -5,6 +5,7 @@ import 'package:to_do_app/app/category/widgets/category_settings_widget.dart';
 import 'package:to_do_app/core/storage/color_data_storage.dart';
 import 'package:to_do_app/core/storage/icon_data_storage.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
+import 'package:to_do_app/core/widgets/app_bar_widget.dart';
 
 class CategoryPage extends StatelessWidget {
   const CategoryPage({Key? key}) : super(key: key);
@@ -22,7 +23,10 @@ class CategoryPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox.shrink(), //replasment for navbar
+            const AppBarWidget(
+              type: AppBarWidgetType.back,
+              title: 'Edit Category',
+            ),
             CategoryPrototypeWidget(
               color: colorData.color,
               activeColor: colorData.activeColor,
