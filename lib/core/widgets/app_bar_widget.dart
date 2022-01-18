@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/consts/padding_consts.dart';
-import 'package:to_do_app/core/storage/global_key_storage.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 import 'package:to_do_app/core/theme/text_theme.dart';
 import 'package:to_do_app/core/widgets/circular_avatar.dart';
+import 'package:to_do_app/router/routes.dart';
 
 enum AppBarWidgetType { main, back }
 
@@ -41,7 +41,9 @@ class AppBarWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
-          const CircularAvatarWidget(),
+          const CircularAvatarWidget(
+            diameter: 34,
+          ),
         ],
       ),
     );
@@ -59,8 +61,8 @@ class _AppBarWidgetIcon extends StatelessWidget {
     Navigator.of(context).pop();
   }
 
-  void handleOpenSidebar() {
-    GlobalKeysCollection.scaffoldKey.currentState!.openDrawer();
+  void handleOpenSidebar(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteAliasData.menu);
   }
 
   @override
@@ -71,7 +73,7 @@ class _AppBarWidgetIcon extends StatelessWidget {
 
     final onTap = type == AppBarWidgetType.back
         ? () => handleGoBack(context)
-        : () => handleOpenSidebar();
+        : () => handleOpenSidebar(context);
 
     return GestureDetector(
       onTap: onTap,

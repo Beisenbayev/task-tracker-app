@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/router/routes.dart';
 
 class CircularAvatarWidget extends StatelessWidget {
-  const CircularAvatarWidget({Key? key}) : super(key: key);
+  final double diameter;
+
+  const CircularAvatarWidget({
+    Key? key,
+    required this.diameter,
+  }) : super(key: key);
 
   void handleOnTap(BuildContext context) {
     Navigator.of(context).pushNamed(RouteAliasData.profile);
@@ -13,8 +18,8 @@ class CircularAvatarWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => handleOnTap(context),
       child: Container(
-        width: 34,
-        height: 34,
+        width: diameter,
+        height: diameter,
         decoration: const BoxDecoration(
           color: Colors.amber,
           borderRadius: BorderRadius.all(

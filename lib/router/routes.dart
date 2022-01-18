@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/app/category/category_page.dart';
 import 'package:to_do_app/app/home/home_page.dart';
+import 'package:to_do_app/app/menu/menu_page.dart';
 import 'package:to_do_app/app/task/task_page.dart';
 import 'package:to_do_app/core/models/category_model.dart';
 import 'package:to_do_app/core/models/task_model.dart';
@@ -12,11 +13,14 @@ class RouteAliasData {
   static const String task = 'home/task';
   static const String profile = 'profile';
   static const String menu = 'menu';
+  static const String settings = 'settings';
+  static const String about = 'about';
 }
 
 class RoutesData {
   static final Map<String, Widget Function(BuildContext)> routes = {
     RouteAliasData.home: (BuildContext context) => const HomePage(),
+    RouteAliasData.menu: (BuildContext context) => const MenuPage(),
   };
 
   static const String initialRoute = RouteAliasData.home;

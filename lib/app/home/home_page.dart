@@ -6,7 +6,6 @@ import 'package:to_do_app/core/consts/padding_consts.dart';
 import 'package:to_do_app/core/models/archive_model.dart';
 import 'package:to_do_app/core/models/home_page_model.dart';
 import 'package:to_do_app/core/models/task_model.dart';
-import 'package:to_do_app/core/storage/global_key_storage.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
 import 'package:to_do_app/core/widgets/app_bar_widget.dart';
 import 'package:to_do_app/core/widgets/tap_bar_widget.dart';
@@ -62,7 +61,6 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
-      key: GlobalKeysCollection.scaffoldKey,
       backgroundColor: ColorThemeShelf.primaryBackground,
       body: SafeArea(
         child: Column(
