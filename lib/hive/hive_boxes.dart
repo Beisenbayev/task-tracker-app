@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:to_do_app/hive/entity/archive.dart';
 import 'package:to_do_app/hive/entity/category.dart';
 import 'entity/task.dart';
 
@@ -13,5 +14,6 @@ class HiveBoxes {
       Hive.box<Category>(HiveBoxAlias.categories);
   static Future<Box<Task>> getTasksBox(int id) =>
       Hive.openBox<Task>(HiveBoxAlias.tasks(id));
-  static Box<Task> getArchivesBox() => Hive.box<Task>(HiveBoxAlias.archives);
+  static Box<Archive> getArchivesBox() =>
+      Hive.box<Archive>(HiveBoxAlias.archives);
 }
