@@ -3,7 +3,6 @@ import 'package:to_do_app/app/category/category_page.dart';
 import 'package:to_do_app/app/home/home_page.dart';
 import 'package:to_do_app/app/task/task_page.dart';
 import 'package:to_do_app/core/models/category_model.dart';
-import 'package:to_do_app/core/models/home_page_model.dart';
 import 'package:to_do_app/core/models/task_model.dart';
 import 'package:to_do_app/router/not_found_page.dart';
 
@@ -14,20 +13,14 @@ class RouteAliasData {
 }
 
 class RoutesData {
-  static final Map<String, Widget Function(BuildContext)> routes = {};
+  static final Map<String, Widget Function(BuildContext)> routes = {
+    RouteAliasData.home: (BuildContext context) => const HomePage(),
+  };
 
   static const String initialRoute = RouteAliasData.home;
 
   static onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case RouteAliasData.home:
-        return MaterialPageRoute(builder: (BuildContext context) {
-          return HomePageProvider(
-            model: HomePageModel(),
-            child: const HomePage(),
-          );
-        });
-
       case RouteAliasData.category:
         int? categoryKey;
         if (settings.arguments != null) {
