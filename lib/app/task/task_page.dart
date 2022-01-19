@@ -4,6 +4,7 @@ import 'package:to_do_app/app/task/widgets/task_settings_widget.dart';
 import 'package:to_do_app/core/models/task_model.dart';
 import 'package:to_do_app/core/storage/icon_data_storage.dart';
 import 'package:to_do_app/core/theme/colors_theme.dart';
+import 'package:to_do_app/core/widgets/app_bar_widget.dart';
 
 class TaskPage extends StatefulWidget {
   const TaskPage({Key? key}) : super(key: key);
@@ -32,7 +33,10 @@ class _TaskPageState extends State<TaskPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox.shrink(), //replasment for navbar
+            const AppBarWidget(
+              type: AppBarWidgetType.back,
+              title: 'Edit Task',
+            ),
             TaskPrototypeWidget(
               icon: IconsCollection.icons[_model.iconId],
               title: _model.title,
