@@ -6,6 +6,7 @@ class ColorThemeShelf {
   static const Color primaryGrey = Color(0xffc4c4c4);
 
   static const Color subtitleColor = Color(0xff757575);
+  static const Color dangerColor = Color(0xffdf4759);
 
   static const Color primaryBackground = Color(0xffffffff);
   static const Color secondaryBackground = Color(0xfff2f2f2);
