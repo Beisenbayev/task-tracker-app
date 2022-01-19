@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/app/category/category_page.dart';
 import 'package:to_do_app/app/home/home_page.dart';
 import 'package:to_do_app/app/menu/menu_page.dart';
+import 'package:to_do_app/app/profile/profile_page.dart';
 import 'package:to_do_app/app/task/task_page.dart';
 import 'package:to_do_app/core/models/category_model.dart';
+import 'package:to_do_app/core/models/profile_model.dart';
 import 'package:to_do_app/core/models/task_model.dart';
 import 'package:to_do_app/router/not_found_page.dart';
 
@@ -27,6 +29,14 @@ class RoutesData {
 
   static onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteAliasData.profile:
+        return MaterialPageRoute(builder: (BuildContext context) {
+          return ProfileModelProvider(
+            model: ProfileModel(),
+            child: const ProfilePage(),
+          );
+        });
+
       case RouteAliasData.category:
         int? categoryKey;
         if (settings.arguments != null) {
