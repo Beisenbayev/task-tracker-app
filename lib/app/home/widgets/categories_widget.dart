@@ -10,6 +10,7 @@ import 'package:to_do_app/router/routes.dart';
 
 class CategoriesWidget extends StatelessWidget {
   final List<Category> categoris;
+  final int tasksCount;
   final int selectedIndex;
   final void Function(int) handleChangeCategory;
   final void Function(int) handleEditCategory;
@@ -17,6 +18,7 @@ class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({
     Key? key,
     required this.categoris,
+    required this.tasksCount,
     required this.selectedIndex,
     required this.handleChangeCategory,
     required this.handleEditCategory,
@@ -70,7 +72,7 @@ class CategoriesWidget extends StatelessWidget {
                   activeColor: colorData.activeColor,
                   icon: icon,
                   title: category.title,
-                  taskCount: 10,
+                  taskCount: tasksCount,
                   isSelected: (index == selectedIndex),
                 ),
               );

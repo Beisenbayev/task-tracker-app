@@ -54,7 +54,11 @@ class CategoryItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _CategoryItemIconWidget(color: activeColor, icon: icon),
-              _CategoryItemInfoWidget(title: title, taskCount: taskCount)
+              _CategoryItemInfoWidget(
+                title: title,
+                taskCount: taskCount,
+                isSelected: isSelected,
+              )
             ],
           ),
         ),
@@ -99,14 +103,20 @@ class _CategoryItemIconWidget extends StatelessWidget {
 class _CategoryItemInfoWidget extends StatelessWidget {
   final String title;
   final int taskCount;
+  final bool isSelected;
 
   const _CategoryItemInfoWidget({
     required this.title,
     required this.taskCount,
+    required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
+    final countWidget = isSelected
+        ? Text('$taskCount tasks', style: TextThemeShelf.subtitle(13))
+        : const SizedBox(height: 5);
+
     return Padding(
       padding: const EdgeInsets.only(left: 4),
       child: Column(
@@ -118,10 +128,7 @@ class _CategoryItemInfoWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 5),
-          Text(
-            '+$taskCount task',
-            style: TextThemeShelf.subtitle(13),
-          ),
+          countWidget,
         ],
       ),
     );

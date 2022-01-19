@@ -111,6 +111,7 @@ class _HomeTasksListWidget extends StatelessWidget {
       children: [
         CategoriesWidget(
           categoris: _model.categories,
+          tasksCount: _model.tasks.length,
           selectedIndex: _model.categoryIndex,
           handleChangeCategory: _model.changeCategoryIndex,
           handleEditCategory: handleEditCategory,
