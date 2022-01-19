@@ -31,6 +31,11 @@ class HomePageModel extends ChangeNotifier {
 
   void _notifyCategoriesChange() {
     _categories = _categoriesBox.values.toList();
+    if (_categories.length == 1) {
+      changeCategoryIndex(0);
+    } else if (_categories.length > 1) {
+      changeCategoryIndex(_categoryIndex);
+    }
     _isTasksAvailable = (_categories.isEmpty) ? false : true;
     notifyListeners();
   }
@@ -45,6 +50,7 @@ class HomePageModel extends ChangeNotifier {
     _tasksBox = await HiveBoxes.getTasksBox(_categoryKey);
     _tasksBox.listenable().addListener(_notifyTasksChange);
     _tasks = _tasksBox.values.toList();
+    notifyListeners();
   }
 
   void changeCategoryIndex(int index) {
