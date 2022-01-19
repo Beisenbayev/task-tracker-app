@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/core/theme/colors_theme.dart';
 import 'package:to_do_app/core/theme/text_theme.dart';
 
 class CategoryItemWidget extends StatelessWidget {
@@ -8,6 +9,8 @@ class CategoryItemWidget extends StatelessWidget {
   final String title;
   final int taskCount;
   final bool isSelected;
+  final bool isRemoveMode;
+  final void Function() removeCategory;
 
   const CategoryItemWidget({
     Key? key,
@@ -17,6 +20,8 @@ class CategoryItemWidget extends StatelessWidget {
     required this.title,
     required this.taskCount,
     required this.isSelected,
+    required this.isRemoveMode,
+    required this.removeCategory,
   }) : super(key: key);
 
   @override
@@ -64,7 +69,10 @@ class CategoryItemWidget extends StatelessWidget {
         ),
         isSelected
             ? _CategoryItemLineWidget(activeColor: activeColor)
-            : Container()
+            : const SizedBox.shrink(),
+        isRemoveMode
+            ? _CategoryRemoveButtonWidget(removeCategory: removeCategory)
+            : const SizedBox.shrink(),
       ],
     );
   }
@@ -155,6 +163,43 @@ class _CategoryItemLineWidget extends StatelessWidget {
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15),
             topRight: Radius.circular(15),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CategoryRemoveButtonWidget extends StatelessWidget {
+  final void Function() removeCategory;
+
+  const _CategoryRemoveButtonWidget({
+    Key? key,
+    required this.removeCategory,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 10,
+      right: 10,
+      child: GestureDetector(
+        onTap: removeCategory,
+        child: Container(
+          decoration: BoxDecoration(
+            color: ColorThemeShelf.dangerColor,
+            border: Border.all(
+              color: ColorThemeShelf.primaryDark,
+              width: 1,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(100),
+            ),
+          ),
+          child: const Icon(
+            Icons.remove_rounded,
+            color: ColorThemeShelf.primaryLight,
+            size: 18,
           ),
         ),
       ),

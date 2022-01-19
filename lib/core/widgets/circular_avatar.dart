@@ -53,7 +53,6 @@ class _CircularAvatarWidgetState extends State<CircularAvatarWidget> {
           image: _image,
           fit: BoxFit.cover,
         ),
-        color: Colors.amber,
         borderRadius: const BorderRadius.all(
           Radius.circular(100),
         ),

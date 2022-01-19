@@ -13,11 +13,13 @@ class HomePageModel extends ChangeNotifier {
   late Box<Task> _tasksBox;
   List<Category> _categories = [];
   List<Task> _tasks = [];
+  bool _removeCategoryMode = false;
   bool _isTasksAvailable = false;
 
   int get categoryIndex => _categoryIndex;
   List<Category> get categories => _categories;
   List<Task> get tasks => _tasks;
+  bool get removeCategoryMode => _removeCategoryMode;
   bool get isTasksAvailable => _isTasksAvailable;
 
   HomePageModel() {
@@ -56,6 +58,20 @@ class HomePageModel extends ChangeNotifier {
   void changeCategoryIndex(int index) {
     _categoryIndex = index;
     _initTasksByKey();
+    notifyListeners();
+  }
+
+  void toggleRemoveCategoryMode() {
+    if (categories.isNotEmpty) {
+      _removeCategoryMode = !_removeCategoryMode;
+    }
+    notifyListeners();
+  }
+
+  void handleRemoveCategory(int index) async {
+    final _categoryKey = _categoriesBox.keyAt(index);
+    await Hive.deleteBoxFromDisk(HiveBoxAlias.tasks(_categoryKey));
+    await _categoriesBox.delete(_categoryKey);
     notifyListeners();
   }
 

@@ -12,6 +12,9 @@ class CategoriesWidget extends StatelessWidget {
   final List<Category> categoris;
   final int tasksCount;
   final int selectedIndex;
+  final bool removeCategoryMode;
+  final void Function() toggleRemoveCategoryMode;
+  final void Function(int) handleRemoveCategory;
   final void Function(int) handleChangeCategory;
   final void Function(int) handleEditCategory;
 
@@ -20,6 +23,9 @@ class CategoriesWidget extends StatelessWidget {
     required this.categoris,
     required this.tasksCount,
     required this.selectedIndex,
+    required this.removeCategoryMode,
+    required this.toggleRemoveCategoryMode,
+    required this.handleRemoveCategory,
     required this.handleChangeCategory,
     required this.handleEditCategory,
   }) : super(key: key);
@@ -30,6 +36,12 @@ class CategoriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final deleteBtnOnTap =
+        (categoris.isNotEmpty) ? toggleRemoveCategoryMode : null;
+    final deleteBtnStyle = (categoris.isEmpty)
+        ? ButtonThemeShelf.disabledButton(10, 3)
+        : ButtonThemeShelf.secondaryButton(10, 3);
+
     return Column(
       children: [
         Padding(
@@ -40,15 +52,23 @@ class CategoriesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Categories',
-                style: TextThemeShelf.title(18),
+              Expanded(
+                child: Text(
+                  'Categories',
+                  style: TextThemeShelf.title(18),
+                ),
               ),
+              OutlinedButton(
+                onPressed: deleteBtnOnTap,
+                child: const Icon(Icons.remove, size: 24),
+                style: deleteBtnStyle,
+              ),
+              const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () => handleAddNewCategory(context),
                 child: const Text('Add'),
                 style: ButtonThemeShelf.primaryButton(5, 12),
-              )
+              ),
             ],
           ),
         ),
@@ -74,6 +94,8 @@ class CategoriesWidget extends StatelessWidget {
                   title: category.title,
                   taskCount: tasksCount,
                   isSelected: (index == selectedIndex),
+                  isRemoveMode: removeCategoryMode,
+                  removeCategory: () => handleRemoveCategory(index),
                 ),
               );
             },
