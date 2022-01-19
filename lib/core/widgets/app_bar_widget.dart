@@ -42,7 +42,7 @@ class AppBarWidget extends StatelessWidget {
           ),
           const SizedBox(width: 16),
           const CircularAvatarWidget(
-            diameter: 34,
+            diameter: 40,
           ),
         ],
       ),
