@@ -21,6 +21,10 @@ class CircularAvatarWidget extends StatelessWidget {
         width: diameter,
         height: diameter,
         decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('./avatars/bear.jpg'),
+            fit: BoxFit.cover,
+          ),
           color: Colors.amber,
           borderRadius: BorderRadius.all(
             Radius.circular(100),
