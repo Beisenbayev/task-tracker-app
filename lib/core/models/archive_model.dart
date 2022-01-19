@@ -55,14 +55,14 @@ class ArchiveModel extends ChangeNotifier {
   }
 }
 
-class ArchiveModelProvider extends InheritedWidget {
+class ArchiveModelProvider extends InheritedNotifier {
   final ArchiveModel model;
 
   const ArchiveModelProvider({
     Key? key,
     required child,
     required this.model,
-  }) : super(key: key, child: child);
+  }) : super(key: key, child: child, notifier: model);
 
   static ArchiveModelProvider? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<ArchiveModelProvider>();
