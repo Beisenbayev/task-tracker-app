@@ -28,4 +28,15 @@ class LocalValueEditor {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(LocalValueAliasData.profileData, number);
   }
+
+  static Future<bool> getFirstTime() async {
+    final prefs = await SharedPreferences.getInstance();
+    final firstTime = prefs.getBool(LocalValueAliasData.firstTime) ?? true;
+    return firstTime;
+  }
+
+  static setFirstTime(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(LocalValueAliasData.firstTime, value);
+  }
 }

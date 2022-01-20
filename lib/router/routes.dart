@@ -4,12 +4,16 @@ import 'package:to_do_app/app/home/home_page.dart';
 import 'package:to_do_app/app/menu/menu_page.dart';
 import 'package:to_do_app/app/profile/profile_page.dart';
 import 'package:to_do_app/app/task/task_page.dart';
+import 'package:to_do_app/app/welcome/welcome_page.dart';
 import 'package:to_do_app/core/models/category_model.dart';
 import 'package:to_do_app/core/models/profile_model.dart';
 import 'package:to_do_app/core/models/task_model.dart';
+import 'package:to_do_app/router/intro_screen_page.dart';
 import 'package:to_do_app/router/not_found_page.dart';
 
 class RouteAliasData {
+  static const String intro = 'intro_screen';
+  static const String welcome = 'welcome';
   static const String home = 'home';
   static const String category = 'home/category';
   static const String task = 'home/task';
@@ -21,11 +25,13 @@ class RouteAliasData {
 
 class RoutesData {
   static final Map<String, Widget Function(BuildContext)> routes = {
+    RouteAliasData.intro: (BuildContext context) => const IntroScreenPage(),
+    RouteAliasData.welcome: (BuildContext context) => const WelcomePage(),
     RouteAliasData.home: (BuildContext context) => const HomePage(),
     RouteAliasData.menu: (BuildContext context) => const MenuPage(),
   };
 
-  static const String initialRoute = RouteAliasData.home;
+  static const String initialRoute = RouteAliasData.intro;
 
   static onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {

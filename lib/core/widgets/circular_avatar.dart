@@ -34,7 +34,7 @@ class _CircularAvatarWidgetState extends State<CircularAvatarWidget> {
   }
 
   void handleOnTap(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteAliasData.profile);
+    Navigator.of(context).pushReplacementNamed(RouteAliasData.profile);
   }
 
   @override
