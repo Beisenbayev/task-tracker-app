@@ -10,6 +10,7 @@ class ColorThemeShelf {
 
   static const Color primaryBackground = Color(0xffffffff);
   static const Color secondaryBackground = Color(0xfff2f2f2);
+  static const Color welcomeBackground = Color(0xffFFFCE3);
 
   static const Color selectedBackground = Color.fromRGBO(149, 250, 113, 0.37);
   static const Color selectedForeground = Color(0xff52d22e);
