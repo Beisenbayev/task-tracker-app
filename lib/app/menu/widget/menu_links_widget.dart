@@ -12,7 +12,7 @@ class MenuLinksWidget extends StatelessWidget {
   }) : super(key: key);
 
   void handleOnTap(BuildContext context, String route) {
-    Navigator.of(context).pushReplacementNamed(route);
+    Navigator.of(context).pushNamedAndRemoveUntil(route, (route) => false);
   }
 
   @override
