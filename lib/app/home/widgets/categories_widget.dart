@@ -39,8 +39,8 @@ class CategoriesWidget extends StatelessWidget {
     final deleteBtnOnTap =
         (categoris.isNotEmpty) ? toggleRemoveCategoryMode : null;
     final deleteBtnStyle = (categoris.isEmpty)
-        ? ButtonThemeShelf.disabledButton(10, 3)
-        : ButtonThemeShelf.secondaryButton(10, 3);
+        ? ButtonThemeShelf.disabledButton(3, 3)
+        : ButtonThemeShelf.secondaryButton(3, 3);
 
     return Column(
       children: [

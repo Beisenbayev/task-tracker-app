@@ -36,6 +36,7 @@ class _MenuPageState extends State<MenuPage> {
     return Scaffold(
       backgroundColor: ColorThemeShelf.primaryDark,
       body: SafeArea(
+        bottom: false,
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(

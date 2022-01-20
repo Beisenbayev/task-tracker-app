@@ -29,6 +29,7 @@ class _TaskPageState extends State<TaskPage> {
     return Scaffold(
       backgroundColor: ColorThemeShelf.primaryBackground,
       body: SafeArea(
+        bottom: false,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,

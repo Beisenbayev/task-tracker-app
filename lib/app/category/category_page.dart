@@ -19,6 +19,7 @@ class CategoryPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorThemeShelf.primaryBackground,
       body: SafeArea(
+        bottom: false,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

@@ -63,6 +63,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: ColorThemeShelf.primaryBackground,
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             const AppBarWidget(
