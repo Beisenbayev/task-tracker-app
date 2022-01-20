@@ -35,7 +35,7 @@ class ProfilePrototypeWidget extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 28),
+          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 18),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -95,7 +95,7 @@ class _ProfileUsernameWidget extends StatelessWidget {
         const SizedBox(height: 5),
         Text(
           username,
-          style: TextThemeShelf.title(40),
+          style: TextThemeShelf.title(34),
           overflow: TextOverflow.ellipsis,
         ),
       ],
