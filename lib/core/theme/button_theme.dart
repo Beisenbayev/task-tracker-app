@@ -22,6 +22,26 @@ class ButtonThemeShelf {
         ),
       );
 
+  static ButtonStyle secondaryButton(double vertical, double horizontal) =>
+      ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(ColorThemeShelf.primaryLight),
+        foregroundColor: MaterialStateProperty.all(ColorThemeShelf.primaryDark),
+        textStyle: MaterialStateProperty.all(TextThemeShelf.button),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+        ),
+        minimumSize: MaterialStateProperty.all(Size.zero),
+        padding: MaterialStateProperty.all(
+          EdgeInsets.symmetric(
+            vertical: vertical,
+            horizontal: horizontal,
+          ),
+        ),
+      );
+
   static ButtonStyle disabledButton(double vertical, double horizontal) =>
       ButtonStyle(
         backgroundColor:
@@ -34,6 +54,7 @@ class ButtonThemeShelf {
             borderRadius: BorderRadius.circular(100),
           ),
         ),
+        minimumSize: MaterialStateProperty.all(Size.zero),
         padding: MaterialStateProperty.all(
           EdgeInsets.symmetric(
             vertical: vertical,

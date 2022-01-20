@@ -13,11 +13,13 @@ class HomePageModel extends ChangeNotifier {
   late Box<Task> _tasksBox;
   List<Category> _categories = [];
   List<Task> _tasks = [];
+  bool _removeCategoryMode = false;
   bool _isTasksAvailable = false;
 
   int get categoryIndex => _categoryIndex;
   List<Category> get categories => _categories;
   List<Task> get tasks => _tasks;
+  bool get removeCategoryMode => _removeCategoryMode;
   bool get isTasksAvailable => _isTasksAvailable;
 
   HomePageModel() {
@@ -31,6 +33,11 @@ class HomePageModel extends ChangeNotifier {
 
   void _notifyCategoriesChange() {
     _categories = _categoriesBox.values.toList();
+    if (_categories.length == 1) {
+      changeCategoryIndex(0);
+    } else if (_categories.length > 1) {
+      changeCategoryIndex(_categoryIndex);
+    }
     _isTasksAvailable = (_categories.isEmpty) ? false : true;
     notifyListeners();
   }
@@ -45,11 +52,26 @@ class HomePageModel extends ChangeNotifier {
     _tasksBox = await HiveBoxes.getTasksBox(_categoryKey);
     _tasksBox.listenable().addListener(_notifyTasksChange);
     _tasks = _tasksBox.values.toList();
+    notifyListeners();
   }
 
   void changeCategoryIndex(int index) {
     _categoryIndex = index;
     _initTasksByKey();
+    notifyListeners();
+  }
+
+  void toggleRemoveCategoryMode() {
+    if (categories.isNotEmpty) {
+      _removeCategoryMode = !_removeCategoryMode;
+    }
+    notifyListeners();
+  }
+
+  void handleRemoveCategory(int index) async {
+    final _categoryKey = _categoriesBox.keyAt(index);
+    await Hive.deleteBoxFromDisk(HiveBoxAlias.tasks(_categoryKey));
+    await _categoriesBox.delete(_categoryKey);
     notifyListeners();
   }
 

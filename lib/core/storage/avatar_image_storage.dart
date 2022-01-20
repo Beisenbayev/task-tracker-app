@@ -17,8 +17,8 @@ class AvatarCollections {
       username: 'Bear',
     ),
     ProfileAvatar(
-      image: const AssetImage('./avatars/bull.jpg'),
-      username: 'Bull',
+      image: const AssetImage('./avatars/wolf.jpg'),
+      username: 'Wolf',
     ),
     ProfileAvatar(
       image: const AssetImage('./avatars/eagle.jpg'),
@@ -33,6 +33,10 @@ class AvatarCollections {
       username: 'Monkey',
     ),
     ProfileAvatar(
+      image: const AssetImage('./avatars/bull.jpg'),
+      username: 'Bull',
+    ),
+    ProfileAvatar(
       image: const AssetImage('./avatars/panther.jpg'),
       username: 'Panther',
     ),
@@ -43,10 +47,6 @@ class AvatarCollections {
     ProfileAvatar(
       image: const AssetImage('./avatars/rhino.jpg'),
       username: 'Rhino',
-    ),
-    ProfileAvatar(
-      image: const AssetImage('./avatars/wolf.jpg'),
-      username: 'Wolf',
     ),
   ];
 }

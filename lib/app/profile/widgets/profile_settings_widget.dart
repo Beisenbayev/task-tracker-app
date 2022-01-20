@@ -55,8 +55,8 @@ class _ProfileSettingsWidgetState extends State<ProfileSettingsWidget> {
             height: 55,
             currentIndex: _tabIndex,
             items: const <TapBarWidgetItem>[
-              TapBarWidgetItem(text: 'Username'),
               TapBarWidgetItem(text: 'Avatar'),
+              TapBarWidgetItem(text: 'Username'),
             ],
             onTap: _changeIndex,
           ),
@@ -101,13 +101,13 @@ class _ProfileSettingsBody extends StatelessWidget {
     required this.handleChangeAvatar,
   }) {
     widgets = [
-      _ProfileSettingsUsername(
-        username: username,
-        handleChangeUsername: handleChangeUsername,
-      ),
       _ProfileSettingsAvatar(
         avatarId: avatarId,
         handleChangeAvatar: handleChangeAvatar,
+      ),
+      _ProfileSettingsUsername(
+        username: username,
+        handleChangeUsername: handleChangeUsername,
       ),
     ];
   }

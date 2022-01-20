@@ -74,7 +74,7 @@ class TaskListWidget extends StatelessWidget {
           const SizedBox(height: 25),
           ElevatedButton(
             onPressed: onPressed,
-            child: const Text('Select All Task'),
+            child: const Text('Complete All'),
             style: buttonStyle,
           )
         ],

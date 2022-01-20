@@ -4,8 +4,8 @@ import 'package:to_do_app/core/storage/avatar_image_storage.dart';
 import 'package:to_do_app/router/routes.dart';
 
 class ProfileModel extends ChangeNotifier {
-  String username = '';
   int avatarId = 0;
+  String username = AvatarCollections.avatars[0].username;
 
   ProfileModel() {
     _setup();
